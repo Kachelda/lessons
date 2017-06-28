@@ -23,7 +23,7 @@ namespace lesson1
             {
                 Console.WriteLine("Верно!");
             }
-            else if (x <= null )
+            else if (x <= (t-y) )
             {
                 Console.WriteLine("Верно!");
             }
