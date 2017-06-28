@@ -10,7 +10,40 @@ namespace lesson1
     {
         static void Main(string[] args)
         {
-           // some code
+            int x = 10;
+            int y = 11;
+            int z = 9;
+            int t = 20;
+
+            if(x != 10)
+            {
+                Console.WriteLine("Верно!");
+            }
+            else if (x == y)
+            {
+                Console.WriteLine("Верно!");
+            }
+            else if (x <= null )
+            {
+                Console.WriteLine("Верно!");
+            }
+            else if (x < z)
+            {
+                Console.WriteLine("Верно!");
+            }
+            else if (x >= t)
+            {
+                Console.WriteLine("Верно!");
+            }
+            else if (x>(y+z))
+            {
+                Console.WriteLine("Верно!");
+            }
+            else
+            {
+                Console.WriteLine("Ни одно из условий не верно!");
+                Console.ReadLine();
+            }
         }
     }
 }
