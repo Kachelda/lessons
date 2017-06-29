@@ -21,7 +21,10 @@ namespace lesson2
                     {
                         if (z == 20)
                         {
-                            break;
+                            Console.WriteLine("число x = {0}", x);
+                            Console.WriteLine("число y = {0}", y);
+                            Console.WriteLine("число z = {0}", z);
+                            Console.ReadLine();
                         }
                         else
                         {
@@ -39,10 +42,7 @@ namespace lesson2
                 }            
             }
             
-            Console.WriteLine("число x = {0}", x);
-            Console.WriteLine("число y = {0}", y);
-            Console.WriteLine("число z = {0}", z);
-            Console.ReadLine();
+            
         }
     }
 }
