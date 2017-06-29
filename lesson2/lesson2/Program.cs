@@ -13,41 +13,36 @@ namespace lesson2
             int x = 0;
             int y = 0;
             int z = 0;
-            while ((x != 10) || (y != 15) || (z != 20))
+            while (x <= 10)
             {
-                for (int i = 0; i < 100; i++)
+                if (x == 10)
                 {
-                    if (i == 10)
+                    if (y == 15)
                     {
-                        x = i;
-                        break;
+                        if (z == 20)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            z++;
+                        }
                     }
-
+                    else
+                    {
+                        y++;
+                    }
                 }
-                for (int k = 0; k < 100; k++)
+                else
                 {
-                    if (k == 15)
-                    {
-                        y = k;
-                        break;
-                    }
-                }
-                for (int m = 0; m < 100; m++)
-                {
-                    if (m == 20)
-                    {
-                        z = m;
-                        break;
-                    }
-
-
-                }
-                Console.WriteLine("Число x = {0}", x);
-                Console.WriteLine("Число y = {0}", y);
-                Console.WriteLine("Число z = {0}", z);
-                Console.ReadLine();
-
+                    x++;
+                }            
             }
+            
+            Console.WriteLine("число x = {0}", x);
+            Console.WriteLine("число y = {0}", y);
+            Console.WriteLine("число z = {0}", z);
+            Console.ReadLine();
         }
     }
 }
