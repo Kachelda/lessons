@@ -13,20 +13,26 @@ namespace lesson2
             int x = 0;
             int y = 0;
             int z = 0;
-            while ((x != 10)||(y != 15)||(z != 20))
+            while (true)
             {
-                //x++;
-                if (x != 10)
+                if (x < 10)
                 {
                     x++;
                 }
-                else if (y!=15)
+
+                if (y<15)
                 {
                     y++;
                 }
-                else if (z!=20)
+
+                if (z<20)
                 {
                     z++;
+                }
+
+                if(x == 10 && y == 15 && z == 20)
+                {
+                    break;
                 }
             }
             Console.WriteLine("число x = {0}", x);
