@@ -15,7 +15,7 @@ namespace lesson1
             int z = 9;
             int t = 20;
 
-            if(x != 10)
+            if (x != 10)
             {
                 Console.WriteLine("Верно!");
             }
@@ -23,7 +23,7 @@ namespace lesson1
             {
                 Console.WriteLine("Верно!");
             }
-            else if (x <= (t-y) )
+            else if (x <= (t - y))
             {
                 Console.WriteLine("Верно!");
             }
@@ -35,7 +35,7 @@ namespace lesson1
             {
                 Console.WriteLine("Верно!");
             }
-            else if (x>(y+z))
+            else if (x > (y + z))
             {
                 Console.WriteLine("Верно!");
             }
