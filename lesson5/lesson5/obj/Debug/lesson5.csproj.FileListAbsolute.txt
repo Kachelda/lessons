@@ -1,0 +1,6 @@
+D:\work\projects\lessons\lesson5\lesson5\bin\Debug\lesson5.exe.config
+D:\work\projects\lessons\lesson5\lesson5\bin\Debug\lesson5.exe
+D:\work\projects\lessons\lesson5\lesson5\bin\Debug\lesson5.pdb
+D:\work\projects\lessons\lesson5\lesson5\obj\Debug\lesson5.csprojResolveAssemblyReference.cache
+D:\work\projects\lessons\lesson5\lesson5\obj\Debug\lesson5.exe
+D:\work\projects\lessons\lesson5\lesson5\obj\Debug\lesson5.pdb
