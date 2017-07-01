@@ -10,20 +10,26 @@ namespace lesson5
     {
         static void Main(string[] args)
         {
-            List<int> list1 = new List<int>() {};
-            
-            for (int i = 1; i <= 100; i++)
-            {   
-                list1.Add(i);
+            List <int> list1 = new List <int> () { };
+                       
+            for (int i = 50; i > -50; i--)
+            {
+                if (i > 0)
+                {
+                    list1.Add(i);
+                }
+                else
+                {
+                    list1.Add(-i + 51);
+                }
+                       
             }
 
-            list1.Reverse(0, 50);
-
-            foreach (int j in list1)
+            foreach (int n in list1)
             { 
-                Console.WriteLine(j);
+                Console.WriteLine(n);
             }
-
+            Console.WriteLine("Количество элементов = {0}", list1.Count);
             Console.ReadLine();
 
 
