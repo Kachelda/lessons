@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,12 @@ namespace lesson4
     {
         static void Main(string[] args)
         {
-            int[] array = new int[100];
-            
-                for (int i = 100; i>0; i--)
+            ArrayList array = new ArrayList();
+                for (int i = 1; i<101; i++)
                 {
-                    array[i-1] = i;
-                    Console.WriteLine(array[i-1]);
-                                
+                    array.Add(i);
+                    Console.WriteLine(array.Count);
+                            
                 }
             Console.Read();
         }   
