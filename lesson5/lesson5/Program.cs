@@ -16,11 +16,11 @@ namespace lesson5
             {
                 if (i < 50)
                 {
-                    list1.Insert(i, 50-i);
+                    list1.Add(50-i);
                 }
                 else
                 {
-                    list1.Insert(i, i+1);
+                    list1.Add(i+1);
                 }
                        
             }
