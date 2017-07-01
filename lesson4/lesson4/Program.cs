@@ -11,14 +11,14 @@ namespace lesson4
     {
         static void Main(string[] args)
         {
-            ArrayList array = new ArrayList();
-                for (int i = 1; i<101; i++)
-                {
-                    array.Add(i);
-                    Console.WriteLine(array.Count);
-                            
-                }
+            List <int> array = new List<int> { };
+            for (int i = 1; i < 101; i++)
+            {
+                array.Add(i);
+                Console.WriteLine(array.Count);
+
+            }
             Console.Read();
-        }   
+        }
     }
 }
