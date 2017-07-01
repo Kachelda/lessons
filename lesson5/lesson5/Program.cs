@@ -12,15 +12,15 @@ namespace lesson5
         {
             List <int> list1 = new List <int> () { };
                        
-            for (int i = 50; i > -50; i--)
+            for (int i = 1; i <= 100; i++)
             {
-                if (i > 0)
+                if (i <= 50)
                 {
-                    list1.Add(i);
+                    list1.Insert(i-1, 51-i);
                 }
                 else
                 {
-                    list1.Add(-i + 51);
+                    list1.Insert(i - 1, i);
                 }
                        
             }
