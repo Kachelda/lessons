@@ -10,13 +10,14 @@ namespace lesson4
     {
         static void Main(string[] args)
         {
-            int[] array = new int[100];                
-                for (int i = 0; i<array.Length; i++)
-            {
-                array[i] = i + 1;
-                Console.WriteLine(array[i]);
-                
-            }
+            int[] array = new int[100];
+            
+                for (int i = 100; i>0; i--)
+                {
+                    array[i-1] = i;
+                    Console.WriteLine(array[i-1]);
+                                
+                }
             Console.Read();
         }   
     }
