@@ -32,6 +32,21 @@ namespace lesson5
             Console.WriteLine("Количество элементов = {0}", list1.Count);
             Console.ReadLine();
 
+            int help = 0;
+            for (int j = 0; j < 50; j++)
+            {
+                help = list1[j];
+                list1[j] = list1[j + 50];
+                list1[j + 50] = help;
+            }
+
+            foreach (int n in list1)
+            {
+                Console.WriteLine(n);
+            }
+            Console.WriteLine("Количество элементов = {0}", list1.Count);
+            Console.ReadLine();
+
 
         }
     }
