@@ -31,7 +31,7 @@ namespace lesson5
             }
             Console.WriteLine("Количество элементов = {0}", list1.Count);
             Console.ReadLine();
-
+                       
             int help = 0;
             for (int j = 0; j < 50; j++)
             {
