@@ -11,7 +11,7 @@ namespace lesson6
         static void Main(string[] args)
         {
             List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9 };
-
+            
             //обработка списка
 
             for (int i = 0; i<list1.Count; i++)
@@ -59,15 +59,21 @@ namespace lesson6
 
             //удаление повторяющихся элементов больше чем 2 раза
 
-            for (int j = 0; j < list1.Count; j++)
+            for (int j = 0; j < list1.Count - 1; j++)
             {
-                for (int k = j + 1; k < list1.Count; k++ )
+                if (list1[j] == list1[j + 1])
                 {
-                    if (list1[j] == list1[k])
+                    while (list1[j + 1] == list1[j + 2])
                     {
-                        list1.RemoveAt(j);
+                        list1.RemoveAt(j + 2);
+                        if (j+2 >= list1.Count)
+                        {
+                            break; 
+                        }
                     }
+                    
                 }
+                
                 
                 
                 
