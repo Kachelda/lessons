@@ -10,7 +10,7 @@ namespace lesson6
     {
         static void Main(string[] args)
         {
-            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9};
+            List<int> list1 = new List<int>() { 0, 2, 4, 6, 8};
             
             //обработка списка
 
@@ -36,7 +36,7 @@ namespace lesson6
 
             List<int> list2 = new List<int>();
             
-            for (int i = 0; i <list1.Count-1; i++)
+            for (int i = 0; i <list1.Count; i++)
             {
                 list2.Add(list1[i]);
                 int p = 1;
