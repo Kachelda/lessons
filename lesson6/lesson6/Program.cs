@@ -10,7 +10,7 @@ namespace lesson6
     {
         static void Main(string[] args)
         {
-            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9 };
+            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9};
             
             //обработка списка
 
@@ -32,62 +32,39 @@ namespace lesson6
 
             Console.ReadLine();
 
-            //сортировка списка
+            //удаление лишних элементов
 
-            int sort;
-            for (int x = 0; x < list1.Count - 1; x++)
+            List<int> list2 = new List<int>();
+            
+            for (int i = 0; i <list1.Count-1; i++)
             {
-                for (int y = x + 1; y < list1.Count; y++)
+                list2.Add(list1[i]);
+                int p = 1;
+                for (int j = i + 1; j < list1.Count; j++)
                 {
-                    if (list1[x] > list1[y])
+                    if (list1[i] == list1[j] && p < 2)
                     {
-                        sort = list1[x];
-                        list1[x] = list1[y];
-                        list1[y] = sort;
+                        list2.Add(list1[j]);
+                        list1.RemoveAt(j);
+                        p++;
+                        j--;
+                    }
+                    else if (list1[i] == list1[j])
+                    {
+                        list1.RemoveAt(j);
+                        j--;
                     }
                 }
             }
 
-            //вывод отсортированного списка
+            //вывод нового списка
 
-            foreach (int n in list1)
+            foreach (int n in list2)
             {
                 Console.Write(" " + n);
             }
 
             Console.ReadLine();
-
-            //удаление повторяющихся элементов больше чем 2 раза
-
-            for (int j = 0; j < list1.Count - 1; j++)
-            {
-                if (list1[j] == list1[j + 1])
-                {
-                    while (list1[j + 1] == list1[j + 2])
-                    {
-                        list1.RemoveAt(j + 2);
-                        if (j+2 >= list1.Count)
-                        {
-                            break; 
-                        }
-                    }
-                    
-                }
-                
-                
-                
-                
-            }
-            // вывод списка
-
-            foreach (int n in list1)
-            {
-                Console.Write(" " + n);
-            }
-
-            Console.ReadLine();
-
-
 
         }
     }
