@@ -1,0 +1,5 @@
+D:\work\projects\lessons\lesson6.1\lesson6.1\bin\Debug\lesson6.1.exe.config
+D:\work\projects\lessons\lesson6.1\lesson6.1\bin\Debug\lesson6.1.exe
+D:\work\projects\lessons\lesson6.1\lesson6.1\bin\Debug\lesson6.1.pdb
+D:\work\projects\lessons\lesson6.1\lesson6.1\obj\Debug\lesson6.1.exe
+D:\work\projects\lessons\lesson6.1\lesson6.1\obj\Debug\lesson6.1.pdb
