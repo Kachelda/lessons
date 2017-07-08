@@ -10,7 +10,7 @@ namespace lesson6
     {
         static void Main(string[] args)
         {
-            List<int> list1 = new List<int>() { 0, 2, 4, 6, 8};
+            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9};
             
             //обработка списка
 
@@ -35,28 +35,35 @@ namespace lesson6
             //удаление лишних элементов
 
             List<int> list2 = new List<int>();
-            
-            for (int i = 0; i <list1.Count; i++)
+
+            for (int i = 0; i < list1.Count; i++)
             {
-                list2.Add(list1[i]);
-                int p = 1;
-                for (int j = i + 1; j < list1.Count; j++)
+                if (list2.Contains(list1[i]))
                 {
-                    if (list1[i] == list1[j] && p < 2)
+                    int p = 1;
+                    for (int k = i + 1; k < list1.Count; k++)
                     {
-                        list2.Add(list1[j]);
-                        list1.RemoveAt(j);
-                        p++;
-                        j--;
+                        if (list1[i] == list1[k] && p < 2)
+                        {
+                            list2.Add(list1[k]);
+                            list1.RemoveAt(k);
+                            p++;
+                            k--;
+                        }
+                        else if (list1[i] == list1[k])
+                        {
+                            list1.RemoveAt(k);
+                            k--;
+                        }
                     }
-                    else if (list1[i] == list1[j])
-                    {
-                        list1.RemoveAt(j);
-                        j--;
-                    }
+                    
+                }
+                else
+                {
+                    list2.Add(list1[i]);
                 }
             }
-
+               
             //вывод нового списка
 
             foreach (int n in list2)
