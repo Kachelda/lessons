@@ -10,7 +10,7 @@ namespace lesson6
     {
         static void Main(string[] args)
         {
-            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9};
+            List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9 };
             
             //обработка списка
 
@@ -40,23 +40,18 @@ namespace lesson6
             {
                 if (list2.Contains(list1[i]))
                 {
-                    int p = 1;
-                    for (int k = i + 1; k < list1.Count; k++)
+                    int p = 0;
+                    for (int k = 0; k < list2.Count; k++)
                     {
-                        if (list1[i] == list1[k] && p < 2)
+                        if (list1[i] == list2[k])
                         {
-                            list2.Add(list1[k]);
-                            list1.RemoveAt(k);
                             p++;
-                            k--;
-                        }
-                        else if (list1[i] == list1[k])
-                        {
-                            list1.RemoveAt(k);
-                            k--;
                         }
                     }
-                    
+                    if (p < 2)
+                    {
+                        list2.Add(list1[i]);
+                    }
                 }
                 else
                 {
