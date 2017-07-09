@@ -11,14 +11,14 @@ namespace lesson6
         static void Main(string[] args)
         {
             List<int> list1 = new List<int>() { 0, 0, 0, 5, 5, 5, 9, 9, 9, 0, 5, 9 };
-            
+
             //обработка списка
 
-            for (int i = 0; i<list1.Count; i++)
+            for (int i = 0; i < list1.Count; i++)
             {
-               if (i % 2 == 0)
+                if (i % 2 == 0)
                 {
-                    list1.Insert(i + 1, list1[i] + 1); 
+                    list1.Insert(i + 1, list1[i] + 1);
                 }
 
             }
@@ -38,7 +38,11 @@ namespace lesson6
 
             for (int i = 0; i < list1.Count; i++)
             {
-                if (list2.Contains(list1[i]))
+                if (list2.Count == 0)
+                {
+                    list2.Add(list1[i]);
+                }
+                else
                 {
                     int p = 0;
                     for (int k = 0; k < list2.Count; k++)
@@ -52,13 +56,9 @@ namespace lesson6
                     {
                         list2.Add(list1[i]);
                     }
-                }
-                else
-                {
-                    list2.Add(list1[i]);
+                
                 }
             }
-               
             //вывод нового списка
 
             foreach (int n in list2)
@@ -67,7 +67,6 @@ namespace lesson6
             }
 
             Console.ReadLine();
-
         }
     }
 }
