@@ -10,63 +10,52 @@ namespace lesson7
     {
         static void Main(string[] args)
         {
-            List<int> list0 = new List<int>() { 1, 1, 5, 5, 6, 6 };
-            List<int> list1 = new List<int>();
-            List<int> list2 = new List<int>();
-            List<int> list3 = new List<int>();
+            List<int> list0 = new List<int>() { 1, 1, 5, 5, 6, 6, 1 };
             List<List<int>> listfinal = new List<List<int>>();
 
-            //разбиваем лист на 3 листа 
             for (int i = 0; i < list0.Count; i++)
             {
-                //list1 = new List<int>();
-                //list2 = new List<int>();
-                //list3 = new List<int>();
-                if (CountContains(list1, list0[i]) > 0)
+                if (ListCountContains(listfinal, list0[i]) >= 0)
                 {
-                    list1.Add(list0[i]);
+                    listfinal[ListCountContains(listfinal, list0[i])].Add(list0[i]);
                 }
-                else if (list1.Count == 0)
+                else
                 {
-                    list1.Add(list0[i]);
+                    listfinal.Add(new List<int>());
+                    listfinal[listfinal.Count - 1].Add(list0[i]);
                 }
-                else if (CountContains(list2, list0[i]) > 0)
-                {
-                    list2.Add(list0[i]);
-                }
-                else if (list2.Count == 0)
-                {
-                    list2.Add(list0[i]);
-                }
-                else if (CountContains(list3, list0[i]) > 0)
-                {
-                    list3.Add(list0[i]);
-                }
-                else if (list3.Count == 0)
-                {
-                    list3.Add(list0[i]);
-                }
+            }
+                //проверить что list0[i] есть ли уже среди listfinal
+                //если да, тогда достаю list у котого хранится это значение чтобы добавить в него list0[i]
+                //если нету, тогда добавляем пустой list и в него добавляем list0[i]
+                //listfinal.Add(new List<int>() { list0[i] });
+
+
+                //listfinal.Add(new List<int>());
+                //listfinal[listfinal.Count - 1].Add(list0[i]); 
 
                
-            }
 
-
-            listfinal.Add(list1);
-            listfinal.Add(list2);
-            listfinal.Add(list3);
-
-            Print(list1);
-            Print(list2);
-            Print(list3);
+            PrintTwoDimensional(listfinal);
             
-            for (int i = 0; i < listfinal.Count; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                Console.WriteLine(listfinal[i][j] + " ");
-                Console.WriteLine();
-            }
             Console.ReadLine();
 
+        }
+
+        static int ListCountContains(List<List<int>> list, int value)
+        {
+            int p = -1;
+            for (int k = 0; k < list.Count; k++)
+            {
+                if (CountContains(list[k], value)>0)
+                {
+                    //p = p - k;
+                    //k = p + k;
+                    //p = k - p;
+                    p = k;
+                }
+            }
+            return p;
         }
 
         static int CountContains(List<int> list, int value)
@@ -91,8 +80,23 @@ namespace lesson7
             Console.ReadLine();
         }
 
-      
-            
-        
+        public static void PrintTwoDimensional(List<List<int>> list)
+        {
+            Console.Write("{");
+            foreach (List<int> list1 in list)
+            {
+                PrintOneDimensional(list1);
+                Console.Write(",");
+            }
+            Console.Write("}");
+        }
+
+        public static void PrintOneDimensional(List<int> list, string separator = ",")
+        {
+            string result = "{" + string.Join(separator, list) + "}";
+            Console.Write(result);
+        }
+
+               
     }
 }
