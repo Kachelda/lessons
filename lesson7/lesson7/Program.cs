@@ -15,9 +15,10 @@ namespace lesson7
 
             for (int i = 0; i < list0.Count; i++)
             {
-                if (ListCountContains(listfinal, list0[i]) >= 0)
+                int help = ListCountContains(listfinal, list0[i]);
+                if (help >= 0)
                 {
-                    listfinal[ListCountContains(listfinal, list0[i])].Add(list0[i]);
+                    listfinal[help].Add(list0[i]);
                 }
                 else
                 {
