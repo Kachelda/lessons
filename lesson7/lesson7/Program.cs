@@ -84,10 +84,14 @@ namespace lesson7
         public static void PrintTwoDimensional(List<List<int>> list)
         {
             Console.Write("{");
-            foreach (List<int> list1 in list)
+
+            for (int i = 0; i < list.Count; i++)
             {
-                PrintOneDimensional(list1);
-                Console.Write(",");
+                PrintOneDimensional(list[i]);
+                if (i + 1 < list.Count)
+                {
+                    Console.Write(",");
+                }
             }
             Console.Write("}");
         }
