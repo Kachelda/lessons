@@ -20,20 +20,44 @@ namespace lesson8
             {
                 for (int j = 0; j < list0[i].Count; j++)
                 {
-                    listfinal.Add(list0[i][j]);
-                    Sortirovka(listfinal);
+                    if (listfinal.Count == 0)
+                    {
+                        listfinal.Add(list0[i][j]);
+                    }
+                    else if (list0[i][j] > listfinal[listfinal.Count - 1])
+                    {
+                        listfinal.Add(list0[i][j]);
+                    }
+                    else if (list0[i][j] < listfinal[0])
+                    {
+                        listfinal.Insert(0, list0[i][j]);
+                    }
+                    else
+                    {
+                        for (int k = listfinal.Count - 1; k >= 0; k--)
+                        {
+                            if (listfinal[k] > list0[i][j] && listfinal[k - 1] < list0[i][j])
+                            {
+                                listfinal.Insert(k, list0[i][j]);
+                            }
+                            
+                        }
+
+                    }
+
+                    
                 }
 
             }
 
             Console.WriteLine();
             Console.WriteLine();
-
+            
             PrintOneDimensional(listfinal);
             Console.ReadLine();
 
         }
-        
+
         public static void PrintTwoDimensional(List<List<int>> list)
         {
             Console.Write("{");
@@ -55,22 +79,7 @@ namespace lesson8
             Console.Write(result);
         }
 
-        public static void Sortirovka(List<int> list)
-        {
-            int help;
-            for (int i = 0; i<list.Count; i++)
-            {
-                for (int j = 0; j<list.Count; j++)
-                {
-                    if (list[i] < list[j])
-                    {
-                        help = list[i];
-                        list[i] = list[j];
-                        list[j] = help;
-                    }
-                }
-            }
-        }
+        
     }
 }
 
