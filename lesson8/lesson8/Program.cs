@@ -20,8 +20,7 @@ namespace lesson8
             {
                 for (int j = 0; j < list0[i].Count; j++)
                 {
-                    int help = SortVst(listfinal, list0[i][j]);
-                    listfinal.Insert(help, list0[i][j]);
+                    listfinal.Insert(SortVst(listfinal, list0[i][j]), list0[i][j]);
                 }
 
             }
