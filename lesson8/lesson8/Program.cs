@@ -10,7 +10,7 @@ namespace lesson8
     {
         static void Main(string[] args)
         {
-            List<List<int>> list0 = new List<List<int>>() { new List<int>() { 3, 4, 1, 2 }, new List<int>() { 1, 2 }, new List<int>() { 5, 6, 3, 4, 5 } };
+            List<List<int>> list0 = new List<List<int>>() { new List<int>() { 3, 4 }, new List<int>() { 1, 2 }, new List<int>() { 5, 6 } };
             List<int> listfinal = new List<int>();
 
             PrintTwoDimensional(list0);
@@ -51,11 +51,11 @@ namespace lesson8
             }
             else
             {
-                for (int k = list.Count - 1; k >= 0; k--)
+                for (int k = 0; k < list.Count; k++)
                 {
-                    if (list[k] >= value && list[k - 1] <= value)
+                    if (list[k] <= value && list[k + 1] >= value)
                     {
-                        ind = k;
+                        ind = k + 1;
                     }
 
                 }
