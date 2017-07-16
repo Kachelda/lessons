@@ -10,7 +10,7 @@ namespace lesson8
     {
         static void Main(string[] args)
         {
-            List<List<int>> list0 = new List<List<int>>() { new List<int>() { 3, 4 }, new List<int>() { 1, 2 }, new List<int>() { 5, 6 } };
+            List<List<int>> list0 = new List<List<int>>() { new List<int>() { 3, 4, 1, 2 }, new List<int>() { 1, 2 }, new List<int>() { 5, 6, 3, 4, 5 } };
             List<int> listfinal = new List<int>();
 
             PrintTwoDimensional(list0);
@@ -20,32 +20,8 @@ namespace lesson8
             {
                 for (int j = 0; j < list0[i].Count; j++)
                 {
-                    if (listfinal.Count == 0)
-                    {
-                        listfinal.Add(list0[i][j]);
-                    }
-                    else if (list0[i][j] > listfinal[listfinal.Count - 1])
-                    {
-                        listfinal.Add(list0[i][j]);
-                    }
-                    else if (list0[i][j] < listfinal[0])
-                    {
-                        listfinal.Insert(0, list0[i][j]);
-                    }
-                    else
-                    {
-                        for (int k = listfinal.Count - 1; k >= 0; k--)
-                        {
-                            if (listfinal[k] > list0[i][j] && listfinal[k - 1] < list0[i][j])
-                            {
-                                listfinal.Insert(k, list0[i][j]);
-                            }
-                            
-                        }
-
-                    }
-
-                    
+                    int help = SortVst(listfinal, list0[i][j]);
+                    listfinal.Insert(help, list0[i][j]);
                 }
 
             }
@@ -56,6 +32,35 @@ namespace lesson8
             PrintOneDimensional(listfinal);
             Console.ReadLine();
 
+        }
+
+        public static int SortVst(List<int> list, int value)
+        {
+            int ind = 0;
+            if (list.Count == 0)
+            {
+                ind = list.Count;
+            }
+            else if (value >= list[list.Count - 1])
+            {
+                ind = list.Count;
+            }
+            else if (value <= list[0])
+            {
+                ind = 0;
+            }
+            else
+            {
+                for (int k = list.Count - 1; k >= 0; k--)
+                {
+                    if (list[k] >= value && list[k - 1] <= value)
+                    {
+                        ind = k;
+                    }
+
+                }
+            }
+            return ind;
         }
 
         public static void PrintTwoDimensional(List<List<int>> list)
