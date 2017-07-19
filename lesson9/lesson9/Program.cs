@@ -27,8 +27,28 @@ namespace lesson9
 
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
-            Console.WriteLine(listfinal[2][2]);
+            ChangeDiagonal(listfinal);
+            PrintTwoDimensional(listfinal);
             Console.ReadLine();
+        }
+
+        public static void ChangeDiagonal(List<List<int>> list)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i == j)
+                    {
+                        int k = list[i][j];
+                        list[i][j] = list[i + 1][j + 1];
+                        list[i + 1][j + 1] = list[i + 2][j + 2];
+                        list[i + 2][j + 2] = k;
+                        break; 
+                    }
+                }
+                break;
+            }
         }
 
         public static void PrintTwoDimensional(List<List<int>> list)
@@ -38,6 +58,7 @@ namespace lesson9
             for (int i = 0; i < list.Count; i++)
             {
                 PrintOneDimensional(list[i]);
+                
                 if (i + 1 < list.Count)
                 {
                     Console.Write(",");
