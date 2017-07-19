@@ -11,16 +11,18 @@ namespace lesson9
         static void Main(string[] args)
         {
             List<List<int>> listfinal = new List<List<int>>();
-            int value = 0; 
-
+            
             for (int i = 0; i < 3; i++)
             {
                 listfinal.Add(new List<int>());
+                
                 for (int j = 0; j < 3; j++)
                 {
-                    value++;
-                    listfinal[i].Add(value);
+                    listfinal[i].Add(listfinal.Count + i + i + j);
                 }
+                
+                
+                
             }
 
             PrintTwoDimensional(listfinal);
