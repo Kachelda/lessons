@@ -27,27 +27,45 @@ namespace lesson9
 
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
-            ChangeDiagonal(listfinal);
+            ChangeDiagonal2(listfinal);
+            PrintTwoDimensional(listfinal);
+            Console.WriteLine();
+            ChangeDiagonal2(listfinal);
             PrintTwoDimensional(listfinal);
             Console.ReadLine();
         }
 
-        public static void ChangeDiagonal(List<List<int>> list)
+        //сдвиг диагонали вниз вправо
+        public static void ChangeDiagonal1(List<List<int>> list)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < list.Count; j++)
                 {
                     if (i == j)
                     {
                         int k = list[i][j];
-                        list[i][j] = list[i + 1][j + 1];
-                        list[i + 1][j + 1] = list[i + 2][j + 2];
-                        list[i + 2][j + 2] = k;
-                        break; 
+                        list[i][j] = list[list.Count - 1][list.Count - 1];
+                        list[list.Count - 1][list.Count - 1] = k;
                     }
                 }
-                break;
+            }
+        }
+
+        //сдвиг диагонали вверх влево
+        public static void ChangeDiagonal2(List<List<int>> list)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                for (int j = list.Count - 1; j >= 0; j--)
+                {
+                    if (i == j)
+                    {
+                        int k = list[i][j];
+                        list[i][j] = list[list.Count - 1][list.Count - 1];
+                        list[list.Count - 1][list.Count - 1] = k;
+                    }
+                }
             }
         }
 
