@@ -9,7 +9,8 @@ namespace lesson9
     enum Side
     {
         Left,
-        Right
+        Right,
+        Middle
     }
 
     class Program
@@ -31,15 +32,14 @@ namespace lesson9
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
             Console.WriteLine();
-            ChangeDiagonalExtended(listfinal, Side.Right, 0);
+            ChangeDiagonalExtended(listfinal, Side.Left, 4);
             PrintTwoDimensional(listfinal);
-            Console.WriteLine();
             Console.ReadLine();
             
         }
 
         //общий метод по диагоналям
-        public static void ChangeDiagonalExtended(List<List<int>> list, Side S, int numd)
+        public static void ChangeDiagonalExtended(List<List<int>> list, Side S = Side.Middle, int numd = 0)
         {
             if (numd >= 0 && numd < list.Count )
             {
@@ -51,14 +51,15 @@ namespace lesson9
                     case Side.Right:
                         ChangeDiagonalRight(list, numd);
                         break;
-                    default:
-                        Console.WriteLine("Некорректный ввод параметра <S>!");
+                    case Side.Middle:
+                        ChangeDiagonal1(list);
                         break;
                 }
             }
             else
             {
                 Console.WriteLine("Некорректный ввод параметра <numd>!");
+                Environment.Exit(0);
             }
         }
         
