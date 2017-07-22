@@ -19,11 +19,11 @@ namespace lesson9
         {
             List<List<int>> listfinal = new List<List<int>>();
             
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 listfinal.Add(new List<int>());
                 
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     listfinal[i].Add(listfinal.Count + i + i + j);
                 }
@@ -32,14 +32,15 @@ namespace lesson9
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
             Console.WriteLine();
-            ChangeDiagonalExtended(listfinal, Side.Left, 4);
+            ChangeDiagonalExtended(listfinal, Side.Left, 1);
             PrintTwoDimensional(listfinal);
             Console.ReadLine();
             
         }
 
-        //общий метод по диагоналям
-        public static void ChangeDiagonalExtended(List<List<int>> list, Side S = Side.Middle, int numd = 0)
+
+        //3 параметра входных
+        public static void ChangeDiagonalExtended(List<List<int>> list, Side S = Side.Middle , int numd = 0)
         {
             if (numd >= 0 && numd < list.Count )
             {
@@ -66,32 +67,39 @@ namespace lesson9
         // диагональ слева numd = i
         public static void ChangeDiagonalLeft(List<List<int>> list, int numd)
         {
-            for (int i = 0; i < list.Count - 1; i++)
+            if (numd != list.Count-1)
             {
-                for (int j = 0; j < list.Count; j++)
+                for (int i = 0; i < list.Count; i++)
                 {
-                    if (i == j + numd)
+                    for (int j = 0; j < list.Count; j++)
                     {
-                        int k = list[i][j];
-                        list[i][j] = list[i + 1][ j + 1];
-                        list[i + 1][j + 1] = k;
+                        if (i == j + numd && i < list.Count - 1)
+                        {
+                            int k = list[i][j];
+                            list[i][j] = list[i + 1][j + 1];
+                            list[i + 1][j + 1] = k;
+                        }
                     }
                 }
             }
+            
         }
 
         //диагональ справа numd = j
         public static void ChangeDiagonalRight(List<List<int>> list, int numd)
         {
-            for (int i = 0; i < list.Count; i++)
+            if (numd != list.Count - 1)
             {
-                for (int j = 0; j < list.Count - 1; j++)
+                for (int i = 0; i < list.Count; i++)
                 {
-                    if (j == i + numd)
+                    for (int j = 0; j < list.Count; j++)
                     {
-                        int k = list[i][j];
-                        list[i][j] = list[i + 1][j + 1];
-                        list[i + 1][j + 1] = k;
+                        if (j == i + numd && j < list.Count - 1)
+                        {
+                            int k = list[i][j];
+                            list[i][j] = list[i + 1][j + 1];
+                            list[i + 1][j + 1] = k;
+                        }
                     }
                 }
             }
