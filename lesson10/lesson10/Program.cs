@@ -32,7 +32,7 @@ namespace lesson10
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
             Console.WriteLine();
-            ChangeDiagonalExtended(listfinal, Side.Left, 1);
+            ChangeDiagonalExtended(listfinal, Side.Middle, 2);
             PrintTwoDimensional(listfinal);
             Console.ReadLine();
 
@@ -48,7 +48,7 @@ namespace lesson10
                 {
                     for (int j = 0; j < list.Count; j++)
                     {
-                        if (i == j + numd && i < list.Count - 1 && S == Side.Left || j == i + numd && j < list.Count - 1 && S == Side.Right || i == j && S == Side.Middle)
+                        if (i == j + numd && i < list.Count - 1 && S == Side.Left || j == i + numd && j < list.Count - 1 && S == Side.Right || i == j && i < list.Count -1 && S == Side.Middle)
                         {
                             int k = list[i][j];
                             list[i][j] = list[i + 1][j + 1];
