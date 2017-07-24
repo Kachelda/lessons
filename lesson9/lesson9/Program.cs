@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace lesson9
 {
-    enum Side
-    {
-        Left,
-        Right,
-        Middle
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -32,77 +25,10 @@ namespace lesson9
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
             Console.WriteLine();
-            ChangeDiagonalExtended(listfinal, Side.Left, 1);
+            ChangeDiagonal2(listfinal);
             PrintTwoDimensional(listfinal);
             Console.ReadLine();
             
-        }
-
-
-        //3 параметра входных
-        public static void ChangeDiagonalExtended(List<List<int>> list, Side S = Side.Middle , int numd = 0)
-        {
-            if (numd >= 0 && numd < list.Count )
-            {
-                switch (S)
-                {
-                    case Side.Left:
-                        ChangeDiagonalLeft(list, numd);
-                        break;
-                    case Side.Right:
-                        ChangeDiagonalRight(list, numd);
-                        break;
-                    case Side.Middle:
-                        ChangeDiagonal1(list);
-                        break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод параметра <numd>!");
-                Environment.Exit(0);
-            }
-        }
-        
-        // диагональ слева numd = i
-        public static void ChangeDiagonalLeft(List<List<int>> list, int numd)
-        {
-            if (numd != list.Count-1)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    for (int j = 0; j < list.Count; j++)
-                    {
-                        if (i == j + numd && i < list.Count - 1)
-                        {
-                            int k = list[i][j];
-                            list[i][j] = list[i + 1][j + 1];
-                            list[i + 1][j + 1] = k;
-                        }
-                    }
-                }
-            }
-            
-        }
-
-        //диагональ справа numd = j
-        public static void ChangeDiagonalRight(List<List<int>> list, int numd)
-        {
-            if (numd != list.Count - 1)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    for (int j = 0; j < list.Count; j++)
-                    {
-                        if (j == i + numd && j < list.Count - 1)
-                        {
-                            int k = list[i][j];
-                            list[i][j] = list[i + 1][j + 1];
-                            list[i + 1][j + 1] = k;
-                        }
-                    }
-                }
-            }
         }
 
         //сдвиг диагонали вниз вправо

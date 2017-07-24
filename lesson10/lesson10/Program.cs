@@ -32,7 +32,7 @@ namespace lesson10
             PrintTwoDimensional(listfinal);
             Console.WriteLine();
             Console.WriteLine();
-            ChangeDiagonalExtended(listfinal, Side.Middle, 2);
+            ChangeDiagonalExtended(listfinal, Side.Left, 3);
             PrintTwoDimensional(listfinal);
             Console.ReadLine();
 
