@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "задача-Lesson1",
+      "appliesTo": "lesson_class/lesson_class/lessons/Lesson1.cs",
+      "type": "command"
+    }
+  ]
+}
