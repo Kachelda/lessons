@@ -1,0 +1,5 @@
+D:\work\projects\lessons\lesson_class\MyLessons\bin\Debug\MyLessons.dll
+D:\work\projects\lessons\lesson_class\MyLessons\bin\Debug\MyLessons.pdb
+D:\work\projects\lessons\lesson_class\MyLessons\obj\Debug\MyLessons.csprojResolveAssemblyReference.cache
+D:\work\projects\lessons\lesson_class\MyLessons\obj\Debug\MyLessons.dll
+D:\work\projects\lessons\lesson_class\MyLessons\obj\Debug\MyLessons.pdb

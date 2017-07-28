@@ -10,3 +10,5 @@ D:\work\projects\lessons\lesson_class\lesson_class\bin\Debug\lesson-class.pdb
 D:\work\projects\lessons\lesson_class\lesson_class\obj\Debug\lesson-class.csprojResolveAssemblyReference.cache
 D:\work\projects\lessons\lesson_class\lesson_class\obj\Debug\lesson-class.exe
 D:\work\projects\lessons\lesson_class\lesson_class\obj\Debug\lesson-class.pdb
+D:\work\projects\lessons\lesson_class\lesson_class\bin\Debug\MyLessons.dll
+D:\work\projects\lessons\lesson_class\lesson_class\bin\Debug\MyLessons.pdb
