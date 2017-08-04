@@ -1,6 +1,0 @@
-D:\work\projects\lessons\lesson6\lesson6\bin\Debug\lesson6.exe.config
-D:\work\projects\lessons\lesson6\lesson6\bin\Debug\lesson6.exe
-D:\work\projects\lessons\lesson6\lesson6\bin\Debug\lesson6.pdb
-D:\work\projects\lessons\lesson6\lesson6\obj\Debug\lesson6.csprojResolveAssemblyReference.cache
-D:\work\projects\lessons\lesson6\lesson6\obj\Debug\lesson6.exe
-D:\work\projects\lessons\lesson6\lesson6\obj\Debug\lesson6.pdb

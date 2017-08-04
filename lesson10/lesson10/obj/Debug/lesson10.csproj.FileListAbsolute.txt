@@ -1,5 +1,0 @@
-D:\work\projects\lessons\lesson10\lesson10\bin\Debug\lesson10.exe.config
-D:\work\projects\lessons\lesson10\lesson10\bin\Debug\lesson10.exe
-D:\work\projects\lessons\lesson10\lesson10\bin\Debug\lesson10.pdb
-D:\work\projects\lessons\lesson10\lesson10\obj\Debug\lesson10.exe
-D:\work\projects\lessons\lesson10\lesson10\obj\Debug\lesson10.pdb
