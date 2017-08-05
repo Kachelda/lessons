@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using lesson_class.UtilsForLessons;
 
-namespace lesson_class.lessons
+namespace lesson_class.lessons.lesson12
 {
     class Lesson12
     {
         const int counterForFinish = 10;
         const string wordForExit = "exit";// слово для выхода из игры
 
+        Dictionary<string, IGrid> grids;
+        
         List<List<string>> listfinal;
         List<string> list;
         List<string> listCharacters;
@@ -22,6 +24,10 @@ namespace lesson_class.lessons
 
         public Lesson12()
         {
+            grids = new Dictionary<string, IGrid>();
+            grids.Add(EnumGrid.column.ToString(), new Column());
+            grids.Add(EnumGrid.row.ToString(), new Row());
+
             listfinal = new List<List<string>>();
             listCharacters = new List<string>();
             listCharactersForRandom = new List<string>();
@@ -73,67 +79,38 @@ namespace lesson_class.lessons
         private void onRun()
         {
             int lineNumber;
-            string line;
+            string inputText;
+
+            Utils.PrintTwoDimensional(listfinal);
+            CheckWord();
 
             while (true)
             {
-                CurrentData();
-                
                 Console.WriteLine("Введите 'row' или 'column' для изменения игрового поля, либо 'exit' для выхода из игры :");
-                line = Console.ReadLine();
+                inputText = Console.ReadLine();
 
-                if (line == wordForExit)
+                if (inputText == wordForExit)
                 {
                     Environment.Exit(0);
                 }
-
-                else if (line == RowCol.row.ToString())
+                else if (inputText == EnumGrid.row.ToString() || inputText == EnumGrid.column.ToString())
                 {
-                    Console.WriteLine("Введите номер <row> от 0 до 2 :");
+                    IGrid grid = grids[inputText];
+                    Console.WriteLine("Введите номер <" + grid.getName() + "> от 0 до 2 :");
+
                     if (Int32.TryParse(Console.ReadLine(), out lineNumber) && lineNumber >= 0 && lineNumber <= 2)
                     {
-                        Console.WriteLine("Введите направление 'left' или 'right' :");
-                        string way1 = Console.ReadLine();
+                        Console.WriteLine("Введите направление " + grid.getBackwardName() + " или " + grid.getForwardName() + " :");
+                        string direction = Console.ReadLine();
 
-                        if (way1 == WayRowCol.left.ToString())
+                        if (direction == EnumDirection.left.ToString() || direction == EnumDirection.down.ToString())
                         {
-                            ChangesLogic.ChangeRowLeft(listfinal, lineNumber);
+                            grid.Backward(listfinal, lineNumber);
                         }
-
-                        else if (way1 == WayRowCol.right.ToString())
+                        else if (direction == EnumDirection.right.ToString() || direction == EnumDirection.up.ToString())
                         {
-                            ChangesLogic.ChangeRowRight(listfinal, lineNumber);
+                            grid.Forward(listfinal, lineNumber);
                         }
-
-                        else
-                        {
-                            Console.WriteLine("Повторите ввод!");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Повторите ввод!");
-                    }
-                }
-
-                else if (line == RowCol.column.ToString())
-                {
-                    Console.WriteLine("Введите номер <column> от 0 до 2 :");
-                    if (Int32.TryParse(Console.ReadLine(), out lineNumber) && lineNumber >= 0 && lineNumber <= 2)
-                    {
-                        Console.WriteLine("Введите направление 'up' или 'dowm' :");
-                        string way1 = Console.ReadLine();
-
-                        if (way1 == WayRowCol.up.ToString())
-                        {
-                            ChangesLogic.ChangeColUp(listfinal, lineNumber);
-                        }
-
-                        else if (way1 == WayRowCol.down.ToString())
-                        {
-                            ChangesLogic.ChangeColDown(listfinal, lineNumber);
-                        }
-
                         else
                         {
                             Console.WriteLine("Повторите ввод!");
@@ -148,14 +125,10 @@ namespace lesson_class.lessons
                 {
                     Console.WriteLine("Повторите ввод!");
                 }
-            }
-        }
 
-        private void CurrentData()
-        {
-            Utils.PrintTwoDimensional(listfinal);
-            CheckWord();
-            Console.WriteLine("Количество правильных слов = {0}", counter);
+                Utils.PrintTwoDimensional(listfinal);
+                CheckWord();
+            }
         }
 
         private void CheckWord()
@@ -172,15 +145,16 @@ namespace lesson_class.lessons
                     Environment.Exit(0);
                 }
             }
+            Console.WriteLine("Количество правильных слов = {0}", counter);
         }
         
-        public enum RowCol
+        public enum EnumGrid
         {
             row,
             column
         }
 
-        public enum WayRowCol
+        public enum EnumDirection
         {
             up,
             down,
