@@ -9,10 +9,10 @@ namespace lesson_class
 {
     class Program
     {
+        const string keyword = "exit"; //ключевое слово для выхода
+
         static void Main(string[] args)
         {
-            string keyword = "exit"; //ключевое слово для выхода
-            
             while (true)
             {
                 Console.WriteLine("Введите номер урока или наберите 'exit' для выхода:");

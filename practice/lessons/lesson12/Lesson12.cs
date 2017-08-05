@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using lesson_class.UtilsForLessons;
-using lesson_class.UtilsForLesson12;
 
 namespace lesson_class.lessons
 {
     class Lesson12
     {
         const int counterForFinish = 10;
-        const string exitgame = "exit";// слово для выхода из игры
+        const string wordForExit = "exit";// слово для выхода из игры
 
         List<List<string>> listfinal;
         List<string> list;
@@ -73,45 +72,37 @@ namespace lesson_class.lessons
 
         private void onRun()
         {
-            int numrc;
+            int lineNumber;
+            string line;
 
             while (true)
             {
-                Utils.PrintTwoDimensional(listfinal);
-                CheckWord();
-                Console.WriteLine("Количество правильных слов = {0}", counter);
-
-                if (counter == counterForFinish)
-                {
-                    Console.WriteLine("Игра окончена!");
-                    Console.ReadLine();
-                    Environment.Exit(0);
-                }
-
+                CurrentData();
+                
                 Console.WriteLine("Введите 'row' или 'column' для изменения игрового поля, либо 'exit' для выхода из игры :");
-                string rc1 = Console.ReadLine();
+                line = Console.ReadLine();
 
-                if (rc1 == exitgame)
+                if (line == wordForExit)
                 {
                     Environment.Exit(0);
                 }
 
-                else if (rc1 == RowCol.row.ToString())
+                else if (line == RowCol.row.ToString())
                 {
                     Console.WriteLine("Введите номер <row> от 0 до 2 :");
-                    if (Int32.TryParse(Console.ReadLine(), out numrc) && numrc >= 0 && numrc <= 2)
+                    if (Int32.TryParse(Console.ReadLine(), out lineNumber) && lineNumber >= 0 && lineNumber <= 2)
                     {
                         Console.WriteLine("Введите направление 'left' или 'right' :");
                         string way1 = Console.ReadLine();
 
                         if (way1 == WayRowCol.left.ToString())
                         {
-                            ChangesLogic.ChangeRowLeft(listfinal, numrc);
+                            ChangesLogic.ChangeRowLeft(listfinal, lineNumber);
                         }
 
                         else if (way1 == WayRowCol.right.ToString())
                         {
-                            ChangesLogic.ChangeRowRight(listfinal, numrc);
+                            ChangesLogic.ChangeRowRight(listfinal, lineNumber);
                         }
 
                         else
@@ -125,22 +116,22 @@ namespace lesson_class.lessons
                     }
                 }
 
-                else if (rc1 == RowCol.column.ToString())
+                else if (line == RowCol.column.ToString())
                 {
                     Console.WriteLine("Введите номер <column> от 0 до 2 :");
-                    if (Int32.TryParse(Console.ReadLine(), out numrc) && numrc >= 0 && numrc <= 2)
+                    if (Int32.TryParse(Console.ReadLine(), out lineNumber) && lineNumber >= 0 && lineNumber <= 2)
                     {
                         Console.WriteLine("Введите направление 'up' или 'dowm' :");
                         string way1 = Console.ReadLine();
 
                         if (way1 == WayRowCol.up.ToString())
                         {
-                            ChangesLogic.ChangeColUp(listfinal, numrc);
+                            ChangesLogic.ChangeColUp(listfinal, lineNumber);
                         }
 
                         else if (way1 == WayRowCol.down.ToString())
                         {
-                            ChangesLogic.ChangeColDown(listfinal, numrc);
+                            ChangesLogic.ChangeColDown(listfinal, lineNumber);
                         }
 
                         else
@@ -160,6 +151,13 @@ namespace lesson_class.lessons
             }
         }
 
+        private void CurrentData()
+        {
+            Utils.PrintTwoDimensional(listfinal);
+            CheckWord();
+            Console.WriteLine("Количество правильных слов = {0}", counter);
+        }
+
         private void CheckWord()
         {
             string str = listfinal[1][0] + listfinal[1][1] + listfinal[1][2];
@@ -167,9 +165,15 @@ namespace lesson_class.lessons
             {
                 list.Remove(str);
                 counter++;
+                if (counter == counterForFinish)
+                {
+                    Console.WriteLine("Игра окончена!");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
             }
         }
-
+        
         public enum RowCol
         {
             row,
