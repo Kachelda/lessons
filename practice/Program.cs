@@ -1,5 +1,6 @@
 ﻿using lesson_class.lessons;
 using lesson_class.lessons.lesson12;
+using lesson_class.lessons.lesson13;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,9 @@ namespace lesson_class
                                 break;
                             case 12:
                                 new Lesson12();
+                                break;
+                            case 13:
+                                new Lesson13();
                                 break;
                             default:
                                 Console.WriteLine("Урока с таким номером не существует, введите число от 1 до 12");

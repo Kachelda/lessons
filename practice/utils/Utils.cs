@@ -68,6 +68,7 @@ namespace lesson_class.UtilsForLessons
                 if (i + 1 < list.Count)
                 {
                     Console.Write(",");
+                    Console.Write("\n");
                 }
             }
             Console.Write("\n");
@@ -75,7 +76,7 @@ namespace lesson_class.UtilsForLessons
             Console.WriteLine();
         }
 
-        public static void PrintOneDimensional(List<int> list, string separator = ",")
+        public static void PrintOneDimensional(List<int> list, string separator = "\t")
         {
             string result = "{" + string.Join(separator, list) + "}";
             Console.Write("\n");
