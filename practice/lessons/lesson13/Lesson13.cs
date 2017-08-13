@@ -132,7 +132,8 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] =  cell;
-                emptyCell.currentPosition = new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y - 1);
+                emptyCell.currentPosition.X = emptyCell.currentPosition.X;
+                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y - 1;
                 //emptyCell  = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y - 1));
             }
         }
@@ -144,7 +145,8 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = cell;
-                emptyCell.currentPosition = new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y + 1);
+                emptyCell.currentPosition.X = emptyCell.currentPosition.X;
+                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y + 1;
                 //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y + 1));
             }
         }
@@ -156,7 +158,8 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = cell;
-                emptyCell.currentPosition = new Point(emptyCell.currentPosition.X - 1, emptyCell.currentPosition.Y);
+                emptyCell.currentPosition.X = emptyCell.currentPosition.X - 1;
+                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y;
                 //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X - 1, emptyCell.currentPosition.Y));
             }
         }
@@ -168,7 +171,8 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = cell;
-                emptyCell.currentPosition = new Point(emptyCell.currentPosition.X + 1, emptyCell.currentPosition.Y);
+                emptyCell.currentPosition.X = emptyCell.currentPosition.X + 1;
+                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y;
                 //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X + 1, emptyCell.currentPosition.Y));
             }
         }
