@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Configuration;
+using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using lesson_class.UtilsForLessons;
@@ -132,9 +135,7 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] =  cell;
-                emptyCell.currentPosition.X = emptyCell.currentPosition.X;
-                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y - 1;
-                //emptyCell  = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y - 1));
+                emptyCell.currentPosition.Offset(0, -1);
             }
         }
 
@@ -145,9 +146,7 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = cell;
-                emptyCell.currentPosition.X = emptyCell.currentPosition.X;
-                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y + 1;
-                //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X, emptyCell.currentPosition.Y + 1));
+                emptyCell.currentPosition.Offset(0, 1);
             }
         }
 
@@ -158,9 +157,7 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = cell;
-                emptyCell.currentPosition.X = emptyCell.currentPosition.X - 1;
-                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y;
-                //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X - 1, emptyCell.currentPosition.Y));
+                emptyCell.currentPosition.Offset(-1, 0);
             }
         }
 
@@ -171,9 +168,7 @@ namespace lesson_class.lessons.lesson13
                 ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = cell;
-                emptyCell.currentPosition.X = emptyCell.currentPosition.X + 1;
-                emptyCell.currentPosition.Y = emptyCell.currentPosition.Y;
-                //emptyCell = new EmptyCell(emptyCell.getValue(), new Point(emptyCell.currentPosition.X + 1, emptyCell.currentPosition.Y));
+                emptyCell.currentPosition.Offset(1, 0);
             }
         }
 
