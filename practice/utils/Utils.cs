@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using lesson_class.lessons.lesson13;
 
 namespace lesson_class.UtilsForLessons
 {
@@ -58,25 +59,16 @@ namespace lesson_class.UtilsForLessons
             Console.ReadLine();
         }
 
-        public static void PrintTwoDimensional(List<List<int>> list)
-        {
-            Console.Write("{");
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                PrintOneDimensional(list[i]);
-                if (i + 1 < list.Count)
-                {
-                    Console.Write(",");
-                    Console.Write("\n");
-                }
-            }
-            Console.Write("\n");
-            Console.Write("}");
-            Console.WriteLine();
-        }
+        
 
         public static void PrintOneDimensional(List<int> list, string separator = "\t")
+        {
+            string result = "{" + string.Join(separator, list) + "}";
+            Console.Write("\n");
+            Console.Write(result);
+        }
+
+        public static void PrintOneDimensional(List<string> list, string separator = ",")
         {
             string result = "{" + string.Join(separator, list) + "}";
             Console.Write("\n");
@@ -100,11 +92,25 @@ namespace lesson_class.UtilsForLessons
             Console.WriteLine();
         }
 
-        public static void PrintOneDimensional(List<string> list, string separator = ",")
+        public static void PrintTwoDimensional(List<List<int>> list)
         {
-            string result = "{" + string.Join(separator, list) + "}";
+            Console.Write("{");
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                PrintOneDimensional(list[i]);
+                if (i + 1 < list.Count)
+                {
+                    Console.Write(",");
+                    Console.Write("\n");
+                }
+            }
             Console.Write("\n");
-            Console.Write(result);
+            Console.Write("}");
+            Console.WriteLine();
         }
+
+        
+        
     }
 }
