@@ -15,10 +15,5 @@ namespace lesson_class.lessons.lesson13
             data = value;
             currentPosition = cP;
         }
-
-        public int getValue()
-        {
-            return data;
-        }
     }
 }
