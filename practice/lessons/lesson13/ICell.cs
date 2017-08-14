@@ -9,5 +9,7 @@ namespace lesson_class.lessons.lesson13
     interface ICell
     {
         int getValue();
+
+        bool IsInPlace();
     }
 }

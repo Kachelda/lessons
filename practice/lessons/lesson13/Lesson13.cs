@@ -14,7 +14,7 @@ namespace lesson_class.lessons.lesson13
     class Lesson13
     {
         private EmptyCell emptyCell;
-
+        
         const string wordForExit = "exit";// слово для выхода из игры
 
         List<List<ICell>> board;
@@ -97,27 +97,19 @@ namespace lesson_class.lessons.lesson13
         
         private void CheckWordBoard()
         {
-            int counter = 1;
             for (int i = 0; i < board.Count; i++)
             {
                 for (int j = 0; j < board[i].Count; j++)
                 {
-                    if (board[i][j].getValue() == counter)//применить метод IsInPlace
-                    {
-                        counter++;
-                        if (counter == board.Count - 1)
-                        {
-                            Console.WriteLine("Игра окончена!");
-                            Console.ReadLine();
-                            Environment.Exit(0);
-                        }
-                    }
-                    else
+                    if (!board[i][j].IsInPlace()) //применить метод IsInPlace
                     {
                         return;
                     }
                 }
             }
+            Console.WriteLine("Игра окончена!");
+            Console.ReadLine();
+            Environment.Exit(0);
         }
 
         enum EnumDirection
@@ -132,9 +124,8 @@ namespace lesson_class.lessons.lesson13
         {
             if (emptyCell.currentPosition.Y != 0)
             {
-                ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] =  cell;
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] = emptyCell;
                 emptyCell.currentPosition.Offset(0, -1);
             }
         }
@@ -143,9 +134,8 @@ namespace lesson_class.lessons.lesson13
         {
             if (emptyCell.currentPosition.Y != list.Count - 1)
             {
-                ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = cell;
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = emptyCell;
                 emptyCell.currentPosition.Offset(0, 1);
             }
         }
@@ -154,9 +144,8 @@ namespace lesson_class.lessons.lesson13
         {
             if (emptyCell.currentPosition.X != 0)
             {
-                ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
-                list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = cell;
+                list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = emptyCell;
                 emptyCell.currentPosition.Offset(-1, 0);
             }
         }
@@ -165,9 +154,8 @@ namespace lesson_class.lessons.lesson13
         {
             if (emptyCell.currentPosition.X != list.Count - 1)
             {
-                ICell cell = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
-                list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = cell;
+                list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = emptyCell;
                 emptyCell.currentPosition.Offset(1, 0);
             }
         }
