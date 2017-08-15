@@ -13,7 +13,7 @@ namespace lesson_class.lessons.lesson13
 {
     class Lesson13
     {
-        private EmptyCell emptyCell;
+        public EmptyCell emptyCell;
         
         const string wordForExit = "exit";// слово для выхода из игры
 
@@ -29,13 +29,13 @@ namespace lesson_class.lessons.lesson13
             OnRunBoard();
         }
 
-        private void InitBoard()
+        public void InitBoard()
         {
             //переносим в двумерный список
             for (int i = 0; i < 4; i++)
             {
-                board.Add(new List<ICell>());
-
+               board.Add(new List<ICell>());
+            
                 for (int j = 0; j < 4; j++)
                 {
                     int ram = new Random().Next(0, list.Count);
@@ -52,8 +52,8 @@ namespace lesson_class.lessons.lesson13
                 }
             }
         }
-        
-        private void OnRunBoard()
+
+        public void OnRunBoard()
         {
             string inputText;
 
@@ -94,8 +94,8 @@ namespace lesson_class.lessons.lesson13
                 CheckWordBoard();
             }
         }
-        
-        private void CheckWordBoard()
+
+        public void CheckWordBoard()
         {
             for (int i = 0; i < board.Count; i++)
             {
@@ -126,6 +126,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] = emptyCell;
+                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(0, 1);
                 emptyCell.currentPosition.Offset(0, -1);
             }
         }
@@ -136,6 +137,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = emptyCell;
+                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(0, -1);
                 emptyCell.currentPosition.Offset(0, 1);
             }
         }
@@ -146,6 +148,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = emptyCell;
+                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(1, 0);
                 emptyCell.currentPosition.Offset(-1, 0);
             }
         }
@@ -156,18 +159,19 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = emptyCell;
+                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(-1, 0);
                 emptyCell.currentPosition.Offset(1, 0);
             }
         }
 
-        private void PrintOneDimensional(List<ICell> list, string separator = "\t")
+        public void PrintOneDimensional(List<ICell> list, string separator = "\t")
         {
             string result = "{" + string.Join(separator, ToListInt(list)) + "}";
             Console.Write("\n");
             Console.Write(result);
         }
 
-        private List<int> ToListInt(List<ICell> list)
+        public List<int> ToListInt(List<ICell> list)
         {
             List<int> result = new List<int>();
             foreach (ICell cell in list)
@@ -177,7 +181,7 @@ namespace lesson_class.lessons.lesson13
             return result;
         }
 
-        private void PrintTwoDimensional(List<List<ICell>> list)
+        public void PrintTwoDimensional(List<List<ICell>> list)
         {
             Console.Write("{");
 

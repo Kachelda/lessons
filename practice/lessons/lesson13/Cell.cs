@@ -13,7 +13,7 @@ namespace lesson_class.lessons.lesson13
         public int data;
 
         public Point currentPosition;
-        
+
         public Point finalPosition()
         {
             if (data == -1)
