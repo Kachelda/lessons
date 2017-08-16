@@ -14,6 +14,8 @@ namespace lesson_class.lessons.lesson13
 
         public Point currentPosition;
 
+        public Point CurrentPosition { get; set; }
+
         public Point finalPosition()
         {
             if (data == -1)
@@ -54,7 +56,7 @@ namespace lesson_class.lessons.lesson13
         public Cell(int value, Point cP)
         {
             data = value;
-            currentPosition = cP;
+            CurrentPosition = cP;
         }
 
         public bool IsInPlace()

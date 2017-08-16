@@ -126,7 +126,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] = emptyCell;
-                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(0, 1);
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(0, 1);
                 emptyCell.currentPosition.Offset(0, -1);
             }
         }
@@ -137,7 +137,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = emptyCell;
-                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(0, -1);
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(0, -1);
                 emptyCell.currentPosition.Offset(0, 1);
             }
         }
@@ -148,7 +148,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = emptyCell;
-                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(1, 0);
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(1, 0);
                 emptyCell.currentPosition.Offset(-1, 0);
             }
         }
@@ -159,7 +159,7 @@ namespace lesson_class.lessons.lesson13
             {
                 list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
                 list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = emptyCell;
-                ((Cell)list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y]).currentPosition.Offset(-1, 0);
+                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(-1, 0);
                 emptyCell.currentPosition.Offset(1, 0);
             }
         }

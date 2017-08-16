@@ -13,7 +13,7 @@ namespace lesson_class.lessons.lesson13
         :base(value, cP)
         {
             data = value;
-            currentPosition = cP;
+            CurrentPosition = cP;
         }
     }
 }
