@@ -12,7 +12,7 @@ namespace lesson_class.lessons.lesson13
     {
         public int data;
 
-        public Point currentPosition;
+        //public Point currentPosition;
 
         public Point CurrentPosition { get; set; }
 
@@ -61,7 +61,7 @@ namespace lesson_class.lessons.lesson13
 
         public bool IsInPlace()
         {
-            return currentPosition == finalPosition();
+            return CurrentPosition == finalPosition();
         }
 
         public int getValue()

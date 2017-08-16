@@ -122,45 +122,45 @@ namespace lesson_class.lessons.lesson13
 
         public void MoveLeft(List<List<ICell>> list)
         {
-            if (emptyCell.currentPosition.Y != 0)
+            if (emptyCell.CurrentPosition.Y != 0)
             {
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1];
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y - 1] = emptyCell;
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(0, 1);
-                emptyCell.currentPosition.Offset(0, -1);
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1];
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1] = emptyCell;
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
+                emptyCell.CurrentPosition.Offset(0, -1);
             }
         }
 
         public void MoveRight(List<List<ICell>> list)
         {
-            if (emptyCell.currentPosition.Y != list.Count - 1)
+            if (emptyCell.CurrentPosition.Y != list.Count - 1)
             {
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1];
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y + 1] = emptyCell;
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(0, -1);
-                emptyCell.currentPosition.Offset(0, 1);
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1];
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1] = emptyCell;
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, -1);
+                emptyCell.CurrentPosition.Offset(0, 1);
             }
         }
 
         public void MoveUp(List<List<ICell>> list)
         {
-            if (emptyCell.currentPosition.X != 0)
+            if (emptyCell.CurrentPosition.X != 0)
             {
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y];
-                list[emptyCell.currentPosition.X - 1][emptyCell.currentPosition.Y] = emptyCell;
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(1, 0);
-                emptyCell.currentPosition.Offset(-1, 0);
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y];
+                list[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y] = emptyCell;
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(1, 0);
+                emptyCell.CurrentPosition.Offset(-1, 0);
             }
         }
 
         public void MoveDown(List<List<ICell>> list)
         {
-            if (emptyCell.currentPosition.X != list.Count - 1)
+            if (emptyCell.CurrentPosition.X != list.Count - 1)
             {
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y] = list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y];
-                list[emptyCell.currentPosition.X + 1][emptyCell.currentPosition.Y] = emptyCell;
-                list[emptyCell.currentPosition.X][emptyCell.currentPosition.Y].CurrentPosition.Offset(-1, 0);
-                emptyCell.currentPosition.Offset(1, 0);
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y];
+                list[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y] = emptyCell;
+                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
+                emptyCell.CurrentPosition.Offset(1, 0);
             }
         }
 
