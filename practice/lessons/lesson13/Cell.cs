@@ -12,17 +12,15 @@ namespace lesson_class.lessons.lesson13
     {
         public int data;
 
-        //public Point currentPosition;
+        public CustomPoint CurrentPosition { get; set; }
 
-        public Point CurrentPosition { get; set; }
-
-        public Point finalPosition()
+        public CustomPoint finalPosition()
         {
             if (data == -1)
             {
-                return new Point(3, 3);
+                return new CustomPoint(3, 3);
             }
-            return new Point((data - 1) / 4, GetHardCodeForY());
+            return new CustomPoint((data - 1) / 4, GetHardCodeForY());
         }
 
         public int GetHardCodeForY()
@@ -53,7 +51,7 @@ namespace lesson_class.lessons.lesson13
             }
         }
 
-        public Cell(int value, Point cP)
+        public Cell(int value, CustomPoint cP)
         {
             data = value;
             CurrentPosition = cP;

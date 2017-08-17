@@ -18,19 +18,18 @@ namespace lesson_class.lessons.lesson13
         const string wordForExit = "exit";// слово для выхода из игры
 
         List<List<ICell>> board;
-        List<int> list;
         
         public Lesson13()
         {
             board = new List<List<ICell>>();
-            list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, -1 };
-
+            
             InitBoard();
             OnRunBoard();
         }
 
         public void InitBoard()
         {
+            List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, -1 };
             //переносим в двумерный список
             for (int i = 0; i < 4; i++)
             {
@@ -41,12 +40,12 @@ namespace lesson_class.lessons.lesson13
                     int ram = new Random().Next(0, list.Count);
                     if (list[ram] == -1)
                     {
-                        emptyCell = new EmptyCell(list[ram], new Point(i, j));
+                        emptyCell = new EmptyCell("z", new CustomPoint(i, j));
                         board[i].Add(emptyCell);
                     }
                     else
                     {
-                        board[i].Add(new Cell(list[ram], new Point(i, j)));
+                        board[i].Add(new Cell(list[ram], new CustomPoint(i, j)));
                     }
                     list.Remove(list[ram]);
                 }
@@ -57,7 +56,7 @@ namespace lesson_class.lessons.lesson13
         {
             string inputText;
 
-            PrintTwoDimensional(board);
+            PrintTwoDimensional();
             CheckWordBoard();
 
             while (true)
@@ -71,26 +70,26 @@ namespace lesson_class.lessons.lesson13
                 }
                 else if (inputText == EnumDirection.left.ToString())
                 {
-                    MoveLeft(board);
+                    MoveLeft();
                 }
                 else if (inputText == EnumDirection.right.ToString())
                 {
-                    MoveRight(board);
+                    MoveRight();
                 }
                 else if (inputText == EnumDirection.up.ToString())
                 {
-                    MoveUp(board);
+                    MoveUp();
                 }
                 else if (inputText == EnumDirection.down.ToString())
                 {
-                    MoveDown(board);
+                    MoveDown();
                 }
                 else
                 {
                     Console.WriteLine("Повторите ввод!");
                 }
 
-                PrintTwoDimensional(board);
+                PrintTwoDimensional();
                 CheckWordBoard();
             }
         }
@@ -120,46 +119,47 @@ namespace lesson_class.lessons.lesson13
             right
         }
 
-        public void MoveLeft(List<List<ICell>> list)
+        public void MoveLeft()
         {
             if (emptyCell.CurrentPosition.Y != 0)
             {
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1];
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1] = emptyCell;
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1];
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1] = emptyCell;
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
                 emptyCell.CurrentPosition.Offset(0, -1);
+                
             }
         }
 
-        public void MoveRight(List<List<ICell>> list)
+        public void MoveRight()
         {
-            if (emptyCell.CurrentPosition.Y != list.Count - 1)
+            if (emptyCell.CurrentPosition.Y != board.Count - 1)
             {
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1];
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1] = emptyCell;
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, -1);
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1];
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1] = emptyCell;
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, -1);
                 emptyCell.CurrentPosition.Offset(0, 1);
             }
         }
 
-        public void MoveUp(List<List<ICell>> list)
+        public void MoveUp()
         {
             if (emptyCell.CurrentPosition.X != 0)
             {
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y];
-                list[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y] = emptyCell;
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(1, 0);
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y];
+                board[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y] = emptyCell;
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(1, 0);
                 emptyCell.CurrentPosition.Offset(-1, 0);
             }
         }
 
-        public void MoveDown(List<List<ICell>> list)
+        public void MoveDown()
         {
-            if (emptyCell.CurrentPosition.X != list.Count - 1)
+            if (emptyCell.CurrentPosition.X != board.Count - 1)
             {
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = list[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y];
-                list[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y] = emptyCell;
-                list[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y];
+                board[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y] = emptyCell;
+                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
                 emptyCell.CurrentPosition.Offset(1, 0);
             }
         }
@@ -181,14 +181,14 @@ namespace lesson_class.lessons.lesson13
             return result;
         }
 
-        public void PrintTwoDimensional(List<List<ICell>> list)
+        public void PrintTwoDimensional()
         {
             Console.Write("{");
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < board.Count; i++)
             {
-                PrintOneDimensional(list[i]);
-                if (i + 1 < list.Count)
+                PrintOneDimensional(board[i]);
+                if (i + 1 < board.Count)
                 {
                     Console.Write(",");
                     Console.Write("\n");

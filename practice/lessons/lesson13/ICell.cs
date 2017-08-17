@@ -10,7 +10,7 @@ namespace lesson_class.lessons.lesson13
 {
     interface ICell
     {
-        Point CurrentPosition { get; set; }
+        CustomPoint CurrentPosition { get; set; }
 
         int getValue();
 
