@@ -9,7 +9,7 @@ namespace lesson_class.lessons.lesson13
 {
     class EmptyCell: Cell, ICell
     {
-        public EmptyCell(string value, CustomPoint cP)
+        public EmptyCell(CustomValue value, CustomPoint cP)
         :base(value, cP)
         {
             data = value;

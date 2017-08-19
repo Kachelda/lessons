@@ -40,12 +40,12 @@ namespace lesson_class.lessons.lesson13
                     int ram = new Random().Next(0, list.Count);
                     if (list[ram] == -1)
                     {
-                        emptyCell = new EmptyCell("z", new CustomPoint(i, j));
+                        emptyCell = new EmptyCell(new CustomValue("111"), new CustomPoint(i, j));
                         board[i].Add(emptyCell);
                     }
                     else
                     {
-                        board[i].Add(new Cell(list[ram], new CustomPoint(i, j)));
+                        board[i].Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j)));
                     }
                     list.Remove(list[ram]);
                 }
@@ -164,19 +164,23 @@ namespace lesson_class.lessons.lesson13
             }
         }
 
-        public void PrintOneDimensional(List<ICell> list, string separator = "\t")
+        public void PrintOneDimensional(List<CustomValue> list, string separator = "\t")
         {
-            string result = "{" + string.Join(separator, ToListInt(list)) + "}";
+            foreach (CustomValue custom in list)
+            {
+                Console.WriteLine(custom.GetValue());
+            }
+            string result = "{" + string.Join(separator, ToListCustomValues(list)) + "}";
             Console.Write("\n");
             Console.Write(result);
         }
 
-        public List<int> ToListInt(List<ICell> list)
+        public List<CustomValue> ToListCustomValues(List<ICell> list)
         {
-            List<int> result = new List<int>();
+            List<CustomValue> result = new List<CustomValue>();
             foreach (ICell cell in list)
             {
-               result.Add(cell.getValue());
+                result.Add(cell.getValue());
             }
             return result;
         }

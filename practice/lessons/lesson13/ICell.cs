@@ -12,7 +12,16 @@ namespace lesson_class.lessons.lesson13
     {
         CustomPoint CurrentPosition { get; set; }
 
-        int getValue();
+        CustomValue getValue();
+
+        bool IsInPlace();
+    }
+
+    interface ICell<T>
+    {
+        CustomPoint CurrentPosition { get; set; }
+
+        CustomValueT<T> getValue();
 
         bool IsInPlace();
     }
