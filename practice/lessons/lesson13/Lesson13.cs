@@ -40,7 +40,7 @@ namespace lesson_class.lessons.lesson13
                     int ram = new Random().Next(0, list.Count);
                     if (list[ram] == -1)
                     {
-                        emptyCell = new EmptyCell(new CustomValue("111"), new CustomPoint(i, j));
+                        emptyCell = new EmptyCell(new CustomValue("emp"), new CustomPoint(i, j));
                         board[i].Add(emptyCell);
                     }
                     else
@@ -164,25 +164,29 @@ namespace lesson_class.lessons.lesson13
             }
         }
 
-        public void PrintOneDimensional(List<CustomValue> list, string separator = "\t")
+        public void PrintOneDimensional(List<ICell> list)
         {
-            foreach (CustomValue custom in list)
+            string result = "{";
+            Console.WriteLine();
+            for (int i = 0; i < list.Count; i++)
             {
-                Console.WriteLine(custom.GetValue());
+                ICell cell = list[i];
+                switch (cell.typeValue())
+                {
+                    case Cell.ReturnValue.INT:
+                        result += ((Cell) cell).getValue();
+                        break;
+                    case Cell.ReturnValue.STRING:
+                        result += ((EmptyCell) cell).getValue();
+                        break;
+                }
+                if (i + 1 < list.Count)
+                {
+                    result += " \t ";
+                }
             }
-            string result = "{" + string.Join(separator, ToListCustomValues(list)) + "}";
-            Console.Write("\n");
+            result += "} \n";
             Console.Write(result);
-        }
-
-        public List<CustomValue> ToListCustomValues(List<ICell> list)
-        {
-            List<CustomValue> result = new List<CustomValue>();
-            foreach (ICell cell in list)
-            {
-                result.Add(cell.getValue());
-            }
-            return result;
         }
 
         public void PrintTwoDimensional()
@@ -194,7 +198,7 @@ namespace lesson_class.lessons.lesson13
                 PrintOneDimensional(board[i]);
                 if (i + 1 < board.Count)
                 {
-                    Console.Write(",");
+                    //Console.Write(",");
                     Console.Write("\n");
                 }
             }

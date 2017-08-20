@@ -15,5 +15,15 @@ namespace lesson_class.lessons.lesson13
             data = value;
             CurrentPosition = cP;
         }
+
+        public string getValue()
+        {
+            return data.GetDataStr();
+        }
+
+        public override ReturnValue typeValue()
+        {
+            return ReturnValue.STRING;
+        }
     }
 }
