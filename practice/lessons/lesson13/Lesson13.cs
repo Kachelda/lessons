@@ -21,6 +21,10 @@ namespace lesson_class.lessons.lesson13
         
         public Lesson13()
         {
+            //bool byl = new CustomPoint(0, 2) == new CustomPoint(0, 2);
+            //Console.WriteLine(byl);
+            //Console.ReadLine();
+
             board = new List<List<ICell>>();
             
             InitBoard();

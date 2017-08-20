@@ -64,7 +64,7 @@ namespace lesson_class.lessons.lesson13
 
         public bool IsInPlace()
         {
-            return CurrentPosition == finalPosition();
+            return CurrentPosition.X == finalPosition().X && CurrentPosition.Y == finalPosition().Y;
         }
 
         public int getValue()
