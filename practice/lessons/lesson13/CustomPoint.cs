@@ -17,5 +17,10 @@
             X += x;
             Y += y;
         }
+
+        public bool Equals(CustomPoint point)
+        {
+            return (X == point.X && Y == point.Y);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -64,7 +65,7 @@ namespace lesson_class.lessons.lesson13
 
         public bool IsInPlace()
         {
-            return CurrentPosition.X == finalPosition().X && CurrentPosition.Y == finalPosition().Y;
+            return CurrentPosition.Equals(finalPosition());
         }
 
         public int getValue()
