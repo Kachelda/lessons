@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,51 +17,22 @@ namespace lesson_class.lessons.lesson13
             STRING
         }
 
+        public int dimension;
+
         public CustomValue data;
 
         public CustomPoint CurrentPosition { get; set; }
 
-        public CustomPoint finalPosition()
+        public virtual CustomPoint finalPosition()
         {
-            if (data.GetDataStr() == "emp")
-            {
-                return new CustomPoint(3, 3);
-            }
-            return new CustomPoint((data.GetDataInt() - 1) / 4, GetHardCodeForY());
+            return new CustomPoint((data.GetDataInt() - 1) / dimension, ((data.GetDataInt() + 1) % dimension + dimension - 2) % dimension);
         }
-
-        public int GetHardCodeForY()
-        {
-            switch (data.GetDataInt())
-            {
-                case 1:
-                case 5:
-                case 9:
-                case 13:
-                    return 0;
-                case 2:
-                case 6:
-                case 10:
-                case 14:
-                    return 1;
-                case 3:
-                case 7:
-                case 11:
-                case 15:
-                    return 2;
-                case 4:
-                case 8:
-                case 12:
-                    return 3;
-                default:
-                    return -1;
-            }
-        }
-
-        public Cell(CustomValue value, CustomPoint cP)
+        
+        public Cell(CustomValue value, CustomPoint cP, int dimension)
         {
             data = value;
             CurrentPosition = cP;
+            this.dimension = dimension;
         }
 
         public bool IsInPlace()

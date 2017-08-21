@@ -13,18 +13,24 @@ namespace lesson_class.lessons.lesson13
 {
     class Lesson13
     {
+        enum EnumDirection
+        {
+            up,
+            down,
+            left,
+            right
+        }
+
         public EmptyCell emptyCell;
         
+        public int dimension;
+
         const string wordForExit = "exit";// слово для выхода из игры
 
         List<List<ICell>> board;
         
         public Lesson13()
         {
-            //bool byl = new CustomPoint(0, 2) == new CustomPoint(0, 2);
-            //Console.WriteLine(byl);
-            //Console.ReadLine();
-
             board = new List<List<ICell>>();
             
             InitBoard();
@@ -33,23 +39,41 @@ namespace lesson_class.lessons.lesson13
 
         public void InitBoard()
         {
-            List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, -1 };
+            while (true)
+            {
+                Console.WriteLine("Введите размерность игрового поля:");
+                if (Int32.TryParse(Console.ReadLine(), out dimension) && dimension > 1)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка! Повторите ввод!");
+                }
+            }
+
+            List<int> list = new List<int>() {-1};
+            for (int i = 1; i < dimension * dimension; i++)
+            {
+                list.Add(i);
+            }
+            
             //переносим в двумерный список
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < dimension; i++)
             {
                board.Add(new List<ICell>());
             
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     int ram = new Random().Next(0, list.Count);
                     if (list[ram] == -1)
                     {
-                        emptyCell = new EmptyCell(new CustomValue("emp"), new CustomPoint(i, j));
+                        emptyCell = new EmptyCell(new CustomValue("emp"), new CustomPoint(i, j), dimension);
                         board[i].Add(emptyCell);
                     }
                     else
                     {
-                        board[i].Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j)));
+                        board[i].Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j), dimension));
                     }
                     list.Remove(list[ram]);
                 }
@@ -65,9 +89,9 @@ namespace lesson_class.lessons.lesson13
 
             while (true)
             {
-                Console.WriteLine("Введите 'left', 'right', 'up' или 'down' чтобы сделать ход, либо 'exit' для выхода из игры :");
+                Console.WriteLine("Введите 'left', 'right', 'up' или 'down' чтобы сделать ход, либо 'exit' для выхода из игры:");
                 inputText = Console.ReadLine();
-
+                
                 if (inputText == wordForExit)
                 {
                     Environment.Exit(0);
@@ -104,7 +128,7 @@ namespace lesson_class.lessons.lesson13
             {
                 for (int j = 0; j < board[i].Count; j++)
                 {
-                    if (!board[i][j].IsInPlace()) //применить метод IsInPlace
+                    if (!board[i][j].IsInPlace())
                     {
                         return;
                     }
@@ -115,14 +139,6 @@ namespace lesson_class.lessons.lesson13
             Environment.Exit(0);
         }
 
-        enum EnumDirection
-        {
-            up,
-            down,
-            left,
-            right
-        }
-
         public void MoveLeft()
         {
             if (emptyCell.CurrentPosition.Y != 0)
@@ -131,7 +147,6 @@ namespace lesson_class.lessons.lesson13
                 board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1] = emptyCell;
                 board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
                 emptyCell.CurrentPosition.Offset(0, -1);
-                
             }
         }
 
@@ -202,7 +217,6 @@ namespace lesson_class.lessons.lesson13
                 PrintOneDimensional(board[i]);
                 if (i + 1 < board.Count)
                 {
-                    //Console.Write(",");
                     Console.Write("\n");
                 }
             }

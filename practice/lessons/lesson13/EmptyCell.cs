@@ -9,13 +9,9 @@ namespace lesson_class.lessons.lesson13
 {
     class EmptyCell: Cell, ICell
     {
-        public EmptyCell(CustomValue value, CustomPoint cP)
-        :base(value, cP)
-        {
-            data = value;
-            CurrentPosition = cP;
-        }
-
+        public EmptyCell(CustomValue value, CustomPoint cP, int dimension)
+            : base(value, cP, dimension) { }
+        
         public string getValue()
         {
             return data.GetDataStr();
@@ -24,6 +20,11 @@ namespace lesson_class.lessons.lesson13
         public override ReturnValue typeValue()
         {
             return ReturnValue.STRING;
+        }
+
+        public override CustomPoint finalPosition()
+        {
+            return new CustomPoint(dimension - 1, dimension - 1);
         }
     }
 }
