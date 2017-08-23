@@ -13,19 +13,12 @@ namespace lesson_class.lessons.lesson13
 {
     class Lesson13
     {
-        enum EnumDirection
-        {
-            up,
-            down,
-            left,
-            right
-        }
-
         public EmptyCell emptyCell;
         
         public int dimension;
 
-        const string wordForExit = "exit";// слово для выхода из игры
+        public int x;
+        public int y;
 
         List<List<ICell>> board;
         
@@ -82,33 +75,35 @@ namespace lesson_class.lessons.lesson13
 
         public void OnRunBoard()
         {
-            string inputText;
+            x = Console.CursorLeft;
+            y = Console.CursorTop;
 
             PrintTwoDimensional();
             CheckWordBoard();
 
             while (true)
             {
-                Console.WriteLine("Введите 'left', 'right', 'up' или 'down' чтобы сделать ход, либо 'exit' для выхода из игры:");
-                inputText = Console.ReadLine();
+                Console.WriteLine("передвигайте ячейки, используя стрелки на клавиатуре, либо нажмите 'Escape' для выхода из игры");
                 
-                if (inputText == wordForExit)
+                ConsoleKeyInfo k = Console.ReadKey(true);
+
+                if (k.Key == ConsoleKey.Escape)
                 {
                     Environment.Exit(0);
                 }
-                else if (inputText == EnumDirection.left.ToString())
+                else if (k.Key == ConsoleKey.LeftArrow)
                 {
                     MoveLeft();
                 }
-                else if (inputText == EnumDirection.right.ToString())
+                else if (k.Key == ConsoleKey.RightArrow)
                 {
                     MoveRight();
                 }
-                else if (inputText == EnumDirection.up.ToString())
+                else if (k.Key == ConsoleKey.UpArrow)
                 {
                     MoveUp();
                 }
-                else if (inputText == EnumDirection.down.ToString())
+                else if (k.Key == ConsoleKey.DownArrow)
                 {
                     MoveDown();
                 }
@@ -117,7 +112,9 @@ namespace lesson_class.lessons.lesson13
                     Console.WriteLine("Повторите ввод!");
                 }
 
+                Console.SetCursorPosition(x, y);
                 PrintTwoDimensional();
+                
                 CheckWordBoard();
             }
         }
