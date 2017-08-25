@@ -17,35 +17,35 @@ namespace lesson_class.lessons.lesson13
             STRING
         }
 
-        public int dimension;
+        public int Dimension { get; set; }
 
-        public CustomValue data;
+        public CustomValue Data { get; set; }
 
         public CustomPoint CurrentPosition { get; set; }
 
-        public virtual CustomPoint finalPosition()
+        public virtual CustomPoint FinalPosition()
         {
-            return new CustomPoint((data.GetDataInt() - 1) / dimension, ((data.GetDataInt() + 1) % dimension + dimension - 2) % dimension);
+            return new CustomPoint((Data.GetDataInt() - 1) / Dimension, ((Data.GetDataInt() + 1) % Dimension + Dimension - 2) % Dimension);
         }
         
-        public Cell(CustomValue value, CustomPoint cP, int dimension)
+        public Cell(CustomValue value, CustomPoint currentPosition, int dimension)
         {
-            data = value;
-            CurrentPosition = cP;
-            this.dimension = dimension;
+            Data = value;
+            CurrentPosition = currentPosition;
+            Dimension = dimension;
         }
 
         public bool IsInPlace()
         {
-            return CurrentPosition.Equals(finalPosition());
+            return CurrentPosition.Equals(FinalPosition());
         }
 
-        public int getValue()
+        public int GetValue()
         {
-            return data.GetDataInt();
+            return Data.GetDataInt();
         }
 
-        public virtual ReturnValue typeValue()
+        public virtual ReturnValue TypeValue()
         {
             return ReturnValue.INT;
         }

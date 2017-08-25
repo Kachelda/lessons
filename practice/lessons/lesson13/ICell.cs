@@ -14,6 +14,6 @@ namespace lesson_class.lessons.lesson13
 
         bool IsInPlace();
 
-        Cell.ReturnValue typeValue();
+        Cell.ReturnValue TypeValue();
     }
 }

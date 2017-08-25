@@ -9,22 +9,22 @@ namespace lesson_class.lessons.lesson13
 {
     class EmptyCell: Cell, ICell
     {
-        public EmptyCell(CustomValue value, CustomPoint cP, int dimension)
-            : base(value, cP, dimension) { }
+        public EmptyCell(CustomValue value, CustomPoint currentPosition, int dimension)
+            : base(value, currentPosition, dimension) { }
         
-        public string getValue()
+        public string GetValue()
         {
-            return data.GetDataStr();
+            return Data.GetDataStr();
         }
 
-        public override ReturnValue typeValue()
+        public override ReturnValue TypeValue()
         {
             return ReturnValue.STRING;
         }
 
-        public override CustomPoint finalPosition()
+        public override CustomPoint FinalPosition()
         {
-            return new CustomPoint(dimension - 1, dimension - 1);
+            return new CustomPoint(Dimension - 1, Dimension - 1);
         }
     }
 }

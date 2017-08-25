@@ -2,9 +2,9 @@
 {
     public class CustomPoint
     {
-        public int X;
+        public int X { get; set; }
 
-        public int Y;
+        public int Y { get; set; }
 
         public CustomPoint(int x, int y)
         {

@@ -8,28 +8,28 @@ namespace lesson_class.lessons.lesson13
 {
     class CustomValue
     {
-        private int dataInt;
+        private int _dataInt;
 
-        private string dataStr;
+        private string _dataStr;
 
-        public CustomValue(int _data)
+        public CustomValue(int data)
         {
-            dataInt = _data;
+            _dataInt = data;
         }
 
-        public CustomValue(string _data)
+        public CustomValue(string data)
         {
-            dataStr = _data;
+            _dataStr = data;
         }
 
         public int GetDataInt()
         {
-            return dataInt;
+            return _dataInt;
         }
 
         public string GetDataStr()
         {
-            return dataStr;
+            return _dataStr;
         }
     }
 }

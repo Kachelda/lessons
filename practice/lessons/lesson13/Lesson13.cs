@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Configuration;
 using System.Drawing.Drawing2D;
@@ -13,18 +14,18 @@ namespace lesson_class.lessons.lesson13
 {
     class Lesson13
     {
-        public EmptyCell emptyCell;
+        public EmptyCell EmptyCell { get; set; }
         
-        public int dimension;
+        public int Dimension { get; set; }
 
-        public int x;
-        public int y;
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        List<List<ICell>> board;
+        Board board;
         
         public Lesson13()
         {
-            board = new List<List<ICell>>();
+            board = new Board();
             
             InitBoard();
             OnRunBoard();
@@ -34,9 +35,12 @@ namespace lesson_class.lessons.lesson13
         {
             while (true)
             {
+                int s;
                 Console.WriteLine("Введите размерность игрового поля:");
-                if (Int32.TryParse(Console.ReadLine(), out dimension) && dimension > 1)
+
+                if (Int32.TryParse(Console.ReadLine(), out s) && s > 1)
                 {
+                    Dimension = s;
                     break;
                 }
                 else
@@ -46,45 +50,49 @@ namespace lesson_class.lessons.lesson13
             }
 
             List<int> list = new List<int>() {-1};
-            for (int i = 1; i < dimension * dimension; i++)
+            for (int i = 1; i < Dimension * Dimension; i++)
             {
                 list.Add(i);
             }
             
-            //переносим в двумерный список
-            for (int i = 0; i < dimension; i++)
+            for (int i = 0; i < Dimension; i++)
             {
-               board.Add(new List<ICell>());
-            
-                for (int j = 0; j < dimension; j++)
+                Row row = new Row();
+                
+                for (int j = 0; j < Dimension; j++)
                 {
                     int ram = new Random().Next(0, list.Count);
                     if (list[ram] == -1)
                     {
-                        emptyCell = new EmptyCell(new CustomValue("emp"), new CustomPoint(i, j), dimension);
-                        board[i].Add(emptyCell);
+                        EmptyCell = new EmptyCell(new CustomValue(string.Empty), new CustomPoint(i, j), Dimension);
+                        row.Cells.Add(EmptyCell);
                     }
                     else
                     {
-                        board[i].Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j), dimension));
+                        row.Cells.Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j), Dimension));
                     }
                     list.Remove(list[ram]);
                 }
+                board.Rows.Add(row);
             }
         }
 
         public void OnRunBoard()
         {
-            x = Console.CursorLeft;
-            y = Console.CursorTop;
+            X = Console.CursorLeft;
+            Y = Console.CursorTop;
 
+            PrintGrid();
             PrintTwoDimensional();
+
             CheckWordBoard();
 
             while (true)
             {
+                Console.WriteLine();
+                Console.WriteLine();
                 Console.WriteLine("передвигайте ячейки, используя стрелки на клавиатуре, либо нажмите 'Escape' для выхода из игры");
-                
+
                 ConsoleKeyInfo k = Console.ReadKey(true);
 
                 if (k.Key == ConsoleKey.Escape)
@@ -112,25 +120,30 @@ namespace lesson_class.lessons.lesson13
                     Console.WriteLine("Повторите ввод!");
                 }
 
-                Console.SetCursorPosition(x, y);
+                Console.SetCursorPosition(X, Y);
+                PrintGrid();
                 PrintTwoDimensional();
-                
+
                 CheckWordBoard();
             }
         }
 
         public void CheckWordBoard()
         {
-            for (int i = 0; i < board.Count; i++)
+            foreach (var row in board.Rows)
             {
-                for (int j = 0; j < board[i].Count; j++)
+                foreach (var cell in row.Cells)
                 {
-                    if (!board[i][j].IsInPlace())
+                    if (!cell.IsInPlace())
                     {
                         return;
                     }
                 }
             }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("Игра окончена!");
             Console.ReadLine();
             Environment.Exit(0);
@@ -138,87 +151,100 @@ namespace lesson_class.lessons.lesson13
 
         public void MoveLeft()
         {
-            if (emptyCell.CurrentPosition.Y != 0)
+            if (EmptyCell.CurrentPosition.Y != 0)
             {
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1];
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y - 1] = emptyCell;
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
-                emptyCell.CurrentPosition.Offset(0, -1);
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y] = board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y - 1];
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y - 1] = EmptyCell;
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, 1);
+                EmptyCell.CurrentPosition.Offset(0, -1);
             }
         }
 
         public void MoveRight()
         {
-            if (emptyCell.CurrentPosition.Y != board.Count - 1)
+            if (EmptyCell.CurrentPosition.Y != board.Rows.Count - 1)
             {
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1];
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y + 1] = emptyCell;
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, -1);
-                emptyCell.CurrentPosition.Offset(0, 1);
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y] = board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y + 1];
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y + 1] = EmptyCell;
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(0, -1);
+                EmptyCell.CurrentPosition.Offset(0, 1);
             }
         }
 
         public void MoveUp()
         {
-            if (emptyCell.CurrentPosition.X != 0)
+            if (EmptyCell.CurrentPosition.X != 0)
             {
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y];
-                board[emptyCell.CurrentPosition.X - 1][emptyCell.CurrentPosition.Y] = emptyCell;
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(1, 0);
-                emptyCell.CurrentPosition.Offset(-1, 0);
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y] = board.Rows[EmptyCell.CurrentPosition.X - 1].Cells[EmptyCell.CurrentPosition.Y];
+                board.Rows[EmptyCell.CurrentPosition.X - 1].Cells[EmptyCell.CurrentPosition.Y] = EmptyCell;
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(1, 0);
+                EmptyCell.CurrentPosition.Offset(-1, 0);
             }
         }
 
         public void MoveDown()
         {
-            if (emptyCell.CurrentPosition.X != board.Count - 1)
+            if (EmptyCell.CurrentPosition.X != board.Rows.Count - 1)
             {
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y] = board[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y];
-                board[emptyCell.CurrentPosition.X + 1][emptyCell.CurrentPosition.Y] = emptyCell;
-                board[emptyCell.CurrentPosition.X][emptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
-                emptyCell.CurrentPosition.Offset(1, 0);
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y] = board.Rows[EmptyCell.CurrentPosition.X + 1].Cells[EmptyCell.CurrentPosition.Y];
+                board.Rows[EmptyCell.CurrentPosition.X + 1].Cells[EmptyCell.CurrentPosition.Y] = EmptyCell;
+                board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
+                EmptyCell.CurrentPosition.Offset(1, 0);
             }
         }
 
-        public void PrintOneDimensional(List<ICell> list)
+        public void PrintGrid()
         {
-            string result = "{";
-            Console.WriteLine();
-            for (int i = 0; i < list.Count; i++)
+            string g1 = "+-----+";
+            string g2 = "|     |";
+
+            for (int i = 0; i < Dimension * 4; i += 4)
             {
-                ICell cell = list[i];
-                switch (cell.typeValue())
+                for (int j = 0; j < Dimension * 6; j += 6)
                 {
-                    case Cell.ReturnValue.INT:
-                        result += ((Cell) cell).getValue();
-                        break;
-                    case Cell.ReturnValue.STRING:
-                        result += ((EmptyCell) cell).getValue();
-                        break;
-                }
-                if (i + 1 < list.Count)
-                {
-                    result += " \t ";
+                    Console.SetCursorPosition(X + j, Y + i);
+                    Console.WriteLine(g1);
+                    Console.SetCursorPosition(X + j, Y + i + 1);
+                    Console.WriteLine(g2);
+                    Console.SetCursorPosition(X + j, Y + i + 2);
+                    Console.WriteLine(g2);
+                    Console.SetCursorPosition(X + j, Y + i + 3);
+                    Console.WriteLine(g2);
+                    Console.SetCursorPosition(X + j, Y + i + 4);
+                    Console.WriteLine(g1);
                 }
             }
-            result += "} \n";
-            Console.Write(result);
+        }
+
+        public void PrintOneDimensional(Row row, int counterY)
+        {
+            int counterX = 0;
+            foreach (var cell in row.Cells)
+            {
+                switch (cell.TypeValue())
+                {
+                    case Cell.ReturnValue.INT:
+                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
+                        Console.Write(((Cell)cell).GetValue());
+                        break;
+                    case Cell.ReturnValue.STRING:
+                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
+                        Console.Write(((EmptyCell)cell).GetValue());
+                        break;
+                }
+                counterX += 6;
+            }
         }
 
         public void PrintTwoDimensional()
         {
-            Console.Write("{");
-
-            for (int i = 0; i < board.Count; i++)
+            int counterY = 0;
+            foreach (var row in board.Rows)
             {
-                PrintOneDimensional(board[i]);
-                if (i + 1 < board.Count)
-                {
-                    Console.Write("\n");
-                }
+                PrintOneDimensional(row, counterY);
+                Console.Write("\n");
+                counterY += 4;
             }
-            Console.Write("\n");
-            Console.Write("}");
             Console.WriteLine();
         }
     }
