@@ -49,12 +49,15 @@ namespace lesson_class.lessons.lesson13
                 }
             }
 
-            List<int> list = new List<int>() {-1};
-            for (int i = 1; i < Dimension * Dimension; i++)
+            var a = Enumerable.Range(0, Dimension*Dimension);
+            List<int> list = new List<int>();
+            foreach (int i in a)
             {
                 list.Add(i);
             }
-            
+
+            Shuffle(list);
+
             for (int i = 0; i < Dimension; i++)
             {
                 Row row = new Row();
@@ -62,7 +65,7 @@ namespace lesson_class.lessons.lesson13
                 for (int j = 0; j < Dimension; j++)
                 {
                     int ram = new Random().Next(0, list.Count);
-                    if (list[ram] == -1)
+                    if (list[ram] == 0)
                     {
                         EmptyCell = new EmptyCell(new CustomValue(string.Empty), new CustomPoint(i, j), Dimension);
                         row.Cells.Add(EmptyCell);
@@ -190,6 +193,19 @@ namespace lesson_class.lessons.lesson13
                 board.Rows[EmptyCell.CurrentPosition.X + 1].Cells[EmptyCell.CurrentPosition.Y] = EmptyCell;
                 board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
                 EmptyCell.CurrentPosition.Offset(1, 0);
+            }
+        }
+
+        public void Shuffle(List<int> list)
+        {
+            Random r = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                int k = r.Next(n--);
+                int temp = list[k];
+                list[k] = list[n];
+                list[n] = temp;
             }
         }
 
