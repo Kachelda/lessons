@@ -55,6 +55,7 @@
     <Compile Include="lessons\lesson12\Row.cs" />
     <Compile Include="lessons\lesson13\Board.cs" />
     <Compile Include="lessons\lesson13\Cell.cs" />
+    <Compile Include="lessons\lesson13\CustomExtensions.cs" />
     <Compile Include="lessons\lesson13\CustomPoint.cs" />
     <Compile Include="lessons\lesson13\CustomValue.cs" />
     <Compile Include="lessons\lesson13\EmptyCell.cs" />

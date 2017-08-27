@@ -25,8 +25,8 @@ namespace lesson_class.lessons.lesson13
             Row row = new Row();
             foreach (int item in list)
             {
-                int y = row.Cells.Count;
                 int x = Rows.Count;
+                int y = row.Cells.Count;
                 if (item == emptyCellIndex)
                 {
                     EmptyCell emptyCell = new EmptyCell(new CustomValue(string.Empty), new CustomPoint(x, y), Dimension);

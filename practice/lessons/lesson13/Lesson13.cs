@@ -48,9 +48,9 @@ namespace lesson_class.lessons.lesson13
                 }
             }
 
-            List<int> list = Enumerable.Range(0, Dimension*Dimension).ToList();
+            List<int> list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
             
-            Shuffle(list);
+            
             board = new Board(Dimension);
             board.Initialization(list);
         }
@@ -170,19 +170,6 @@ namespace lesson_class.lessons.lesson13
                 board.Rows[EmptyCell.CurrentPosition.X + 1].Cells[EmptyCell.CurrentPosition.Y] = EmptyCell;
                 board.Rows[EmptyCell.CurrentPosition.X].Cells[EmptyCell.CurrentPosition.Y].CurrentPosition.Offset(-1, 0);
                 EmptyCell.CurrentPosition.Offset(1, 0);
-            }
-        }
-
-        public void Shuffle(List<int> list)
-        {
-            Random r = new Random();
-            int n = list.Count;
-            while (n > 1)
-            {
-                int k = r.Next(n--);
-                int temp = list[k];
-                list[k] = list[n];
-                list[n] = temp;
             }
         }
 
