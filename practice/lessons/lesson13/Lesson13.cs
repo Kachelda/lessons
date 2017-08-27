@@ -25,9 +25,8 @@ namespace lesson_class.lessons.lesson13
         
         public Lesson13()
         {
-            board = new Board();
-            
             InitBoard();
+            
             OnRunBoard();
         }
 
@@ -49,36 +48,14 @@ namespace lesson_class.lessons.lesson13
                 }
             }
 
-            var a = Enumerable.Range(0, Dimension*Dimension);
-            List<int> list = new List<int>();
-            foreach (int i in a)
-            {
-                list.Add(i);
-            }
-
+            List<int> list = Enumerable.Range(0, Dimension*Dimension).ToList();
+            
             Shuffle(list);
-
-            for (int i = 0; i < Dimension; i++)
-            {
-                Row row = new Row();
-                
-                for (int j = 0; j < Dimension; j++)
-                {
-                    int ram = new Random().Next(0, list.Count);
-                    if (list[ram] == 0)
-                    {
-                        EmptyCell = new EmptyCell(new CustomValue(string.Empty), new CustomPoint(i, j), Dimension);
-                        row.Cells.Add(EmptyCell);
-                    }
-                    else
-                    {
-                        row.Cells.Add(new Cell(new CustomValue(list[ram]), new CustomPoint(i, j), Dimension));
-                    }
-                    list.Remove(list[ram]);
-                }
-                board.Rows.Add(row);
-            }
+            board = new Board(Dimension);
+            board.Initialization(list);
         }
+
+        
 
         public void OnRunBoard()
         {
