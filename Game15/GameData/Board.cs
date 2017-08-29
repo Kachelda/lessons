@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lesson_class.lessons.lesson13
+namespace Game15.GameData
 {
     class Board
     {

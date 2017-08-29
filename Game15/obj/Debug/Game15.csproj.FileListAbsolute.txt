@@ -1,0 +1,6 @@
+D:\work\projects\School\Game15\obj\Debug\Game15.csprojResolveAssemblyReference.cache
+D:\work\projects\School\Game15\bin\Debug\Game15.exe.config
+D:\work\projects\School\Game15\bin\Debug\Game15.exe
+D:\work\projects\School\Game15\bin\Debug\Game15.pdb
+D:\work\projects\School\Game15\obj\Debug\Game15.exe
+D:\work\projects\School\Game15\obj\Debug\Game15.pdb

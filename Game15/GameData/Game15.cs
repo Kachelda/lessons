@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Configuration;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using lesson_class.UtilsForLessons;
 
-namespace lesson_class.lessons.lesson13
+namespace Game15.GameData
 {
-    class Lesson13
+    class Game15
     {
         public int Dimension { get; set; }
 
@@ -20,40 +17,30 @@ namespace lesson_class.lessons.lesson13
         public int Y { get; set; }
 
         Board board;
-        
-        public Lesson13()
+
+        public Game15()
         {
             InitBoard();
-            
+
             OnRunBoard();
         }
 
         public void InitBoard()
         {
-            while (true)
-            {
-                int s;
-                Console.WriteLine("Введите размерность игрового поля:");
+            //IInput console = new ConsoleInput();
+            //Dimension = console.GetDimension();
 
-                if (Int32.TryParse(Console.ReadLine(), out s) && s > 1)
-                {
-                    Dimension = s;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Ошибка! Повторите ввод!");
-                }
-            }
+            IInput file = new FileInput();
+            Dimension = file.GetDimension();
 
             List<int> list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
-            
-            
+
+
             board = new Board(Dimension);
             board.Initialization(list);
         }
 
-        
+
 
         public void OnRunBoard()
         {
