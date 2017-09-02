@@ -45,14 +45,17 @@
     <Compile Include="GameData\Board.cs" />
     <Compile Include="GameData\Cell.cs" />
     <Compile Include="GameData\ConsoleInput.cs" />
+    <Compile Include="GameData\ConsoleOutput.cs" />
     <Compile Include="GameData\CustomExtensions.cs" />
     <Compile Include="GameData\CustomPoint.cs" />
     <Compile Include="GameData\CustomValue.cs" />
     <Compile Include="GameData\EmptyCell.cs" />
     <Compile Include="GameData\FileInput.cs" />
+    <Compile Include="GameData\FileOutput.cs" />
     <Compile Include="GameData\Game15.cs" />
     <Compile Include="GameData\ICell.cs" />
     <Compile Include="GameData\IInput.cs" />
+    <Compile Include="GameData\IOutput.cs" />
     <Compile Include="GameData\Row.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

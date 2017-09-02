@@ -8,10 +8,9 @@ namespace Game15.GameData
 {
     class ConsoleInput:IInput
     {
-        public int Dimension { get; set; }
-
         public int GetDimension()
         {
+            int dimension = 0;
             while (true)
             {
                 int s;
@@ -19,7 +18,7 @@ namespace Game15.GameData
 
                 if (Int32.TryParse(Console.ReadLine(), out s) && s > 1)
                 {
-                    Dimension = s;
+                    dimension = s;
                     break;
                 }
                 else
@@ -27,7 +26,7 @@ namespace Game15.GameData
                     Console.WriteLine("Ошибка! Повторите ввод!");
                 }
             }
-            return Dimension;
+            return dimension;
         }
     }
 }

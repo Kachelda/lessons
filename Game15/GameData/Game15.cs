@@ -13,9 +13,6 @@ namespace Game15.GameData
     {
         public int Dimension { get; set; }
 
-        public int X { get; set; }
-        public int Y { get; set; }
-
         Board board;
 
         public Game15()
@@ -27,11 +24,11 @@ namespace Game15.GameData
 
         public void InitBoard()
         {
-            //IInput console = new ConsoleInput();
-            //Dimension = console.GetDimension();
+            //IInput consoleInput = new ConsoleInput();
+            //Dimension = consoleInput.GetDimension();
 
-            IInput file = new FileInput();
-            Dimension = file.GetDimension();
+            IInput fileInput = new FileInput();
+            Dimension = fileInput.GetDimension();
 
             List<int> list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
 
@@ -44,14 +41,18 @@ namespace Game15.GameData
 
         public void OnRunBoard()
         {
-            X = Console.CursorLeft;
-            Y = Console.CursorTop;
-
-            PrintGrid();
-            PrintTwoDimensional();
-
+            var listOutput = new List<IOutput>();
+            IOutput writeFile = new FileOutput();
+            IOutput consoleOutput = new ConsoleOutput();
+            listOutput.Add(writeFile);
+            listOutput.Add(consoleOutput);
+            foreach (IOutput output in listOutput)
+            {
+                output.OutputBoard(board);
+            }
+            
             CheckWordBoard();
-
+            
             while (true)
             {
                 Console.WriteLine();
@@ -85,11 +86,10 @@ namespace Game15.GameData
                     Console.WriteLine("Повторите ввод!");
                 }
 
-                Console.SetCursorPosition(X, Y);
-                PrintGrid();
-                PrintTwoDimensional();
-
+                consoleOutput.OutputBoard(board);
+                writeFile.OutputBoard(board);
                 CheckWordBoard();
+          
             }
         }
 
@@ -114,59 +114,6 @@ namespace Game15.GameData
             Environment.Exit(0);
         }
 
-        public void PrintGrid()
-        {
-            string g1 = "+-----+";
-            string g2 = "|     |";
-
-            for (int i = 0; i < Dimension * 4; i += 4)
-            {
-                for (int j = 0; j < Dimension * 6; j += 6)
-                {
-                    Console.SetCursorPosition(X + j, Y + i);
-                    Console.WriteLine(g1);
-                    Console.SetCursorPosition(X + j, Y + i + 1);
-                    Console.WriteLine(g2);
-                    Console.SetCursorPosition(X + j, Y + i + 2);
-                    Console.WriteLine(g2);
-                    Console.SetCursorPosition(X + j, Y + i + 3);
-                    Console.WriteLine(g2);
-                    Console.SetCursorPosition(X + j, Y + i + 4);
-                    Console.WriteLine(g1);
-                }
-            }
-        }
-
-        public void PrintOneDimensional(Row row, int counterY)
-        {
-            int counterX = 0;
-            foreach (var cell in row.Cells)
-            {
-                switch (cell.TypeValue())
-                {
-                    case Cell.ReturnValue.INT:
-                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                        Console.Write(((Cell)cell).GetValue());
-                        break;
-                    case Cell.ReturnValue.STRING:
-                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                        Console.Write(((EmptyCell)cell).GetValue());
-                        break;
-                }
-                counterX += 6;
-            }
-        }
-
-        public void PrintTwoDimensional()
-        {
-            int counterY = 0;
-            foreach (var row in board.Rows)
-            {
-                PrintOneDimensional(row, counterY);
-                Console.Write("\n");
-                counterY += 4;
-            }
-            Console.WriteLine();
-        }
+        
     }
 }

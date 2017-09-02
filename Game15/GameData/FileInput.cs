@@ -9,15 +9,14 @@ namespace Game15.GameData
 {
     class FileInput: IInput
     {
-        public int Dimension { get; set; }
-
         public int GetDimension()
         {
+            int dimension = 0;
             try
             {   
                 using (StreamReader sr = new StreamReader("Dimension.txt"))
                 {
-                    Dimension = Convert.ToInt32(sr.ReadToEnd());
+                    dimension = Convert.ToInt32(sr.ReadToEnd());
                 }
             }
             catch (Exception e)
@@ -25,7 +24,7 @@ namespace Game15.GameData
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
-            return Dimension;
+            return dimension;
         }
     }
 }
