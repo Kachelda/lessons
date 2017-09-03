@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -14,10 +15,19 @@ namespace Game15.GameData
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter("Game15.txt", true))
+                using (StreamWriter sw = new StreamWriter("Game15.txt", false))
                 {
-                    
-                    
+                    sw.WriteLine(board.Dimension);
+
+                    foreach (Row row in board.Rows)
+                    {
+                        foreach (Cell cell in row.Cells)
+                        {
+                            sw.Write(cell.GetValue() + " ");
+                        }
+                    }
+                    sw.WriteLine();
+
                     foreach (Row row in board.Rows)
                     {
                         sw.WriteLine(GetLine(board.Dimension));

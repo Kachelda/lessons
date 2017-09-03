@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -24,15 +25,46 @@ namespace Game15.GameData
 
         public void InitBoard()
         {
-            //IInput consoleInput = new ConsoleInput();
-            //Dimension = consoleInput.GetDimension();
+            ConsoleInput consoleInput = new ConsoleInput();
 
-            IInput fileInput = new FileInput();
-            Dimension = fileInput.GetDimension();
+            int i;
+            List<int> list = new List<int>();
 
-            List<int> list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
-
-
+            do
+            {
+                Console.WriteLine(
+                    "Меню:\n1) Начать новую игру \n2) Продолжить ранее сохраненную игру \n3) Выйти из игры");
+                i = Convert.ToInt32(Console.ReadLine());
+                switch (i)
+                {
+                    case 1:
+                        Dimension = consoleInput.GetDimension();
+                        list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
+                        break;
+                    case 2:
+                        if (File.Exists("Game15.txt"))
+                        {
+                            Dimension = consoleInput.GetFileDimension();
+                            consoleInput.GetFileList(list);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Сохраненной игры нет, начните новую!");
+                        }
+                        break;
+                    case 3:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Ошибка! Выберите правильный пункт!");
+                        break;
+                }
+                Console.Clear();
+            } while (i != 1 && i != 2);
+            
+            //IInput fileInput = new FileInput();
+            //Dimension = fileInput.GetDimension();
+            
             board = new Board(Dimension);
             board.Initialization(list);
         }
