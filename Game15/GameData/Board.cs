@@ -46,6 +46,27 @@ namespace Game15.GameData
             }
         }
 
+        public void CheckWordBoard()
+        {
+            foreach (var row in Rows)
+            {
+                foreach (var cell in row.Cells)
+                {
+                    if (!cell.IsInPlace())
+                    {
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Игра окончена!");
+            Console.ReadLine();
+            Environment.Exit(0);
+        }
+
         public void MoveLeft()
         {
             if (EmptyCell.CurrentPosition.Y != 0)

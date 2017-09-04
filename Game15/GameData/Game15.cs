@@ -50,6 +50,8 @@ namespace Game15.GameData
                         else
                         {
                             Console.WriteLine("Сохраненной игры нет, начните новую!");
+                            Console.ReadLine();
+                            i = 0;
                         }
                         break;
                     case 3:
@@ -60,7 +62,7 @@ namespace Game15.GameData
                         break;
                 }
                 Console.Clear();
-            } while (i != 1 && i != 2);
+            } while (i != 1 && i !=2);
             
             //IInput fileInput = new FileInput();
             //Dimension = fileInput.GetDimension();
@@ -83,7 +85,7 @@ namespace Game15.GameData
                 output.OutputBoard(board);
             }
             
-            CheckWordBoard();
+            board.CheckWordBoard();
             
             while (true)
             {
@@ -120,32 +122,8 @@ namespace Game15.GameData
 
                 consoleOutput.OutputBoard(board);
                 writeFile.OutputBoard(board);
-                CheckWordBoard();
-          
+                board.CheckWordBoard();
             }
         }
-
-        public void CheckWordBoard()
-        {
-            foreach (var row in board.Rows)
-            {
-                foreach (var cell in row.Cells)
-                {
-                    if (!cell.IsInPlace())
-                    {
-                        return;
-                    }
-                }
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Игра окончена!");
-            Console.ReadLine();
-            Environment.Exit(0);
-        }
-
-        
     }
 }
