@@ -51,18 +51,18 @@ namespace Game15.GameData
             int counterX = 0;
             foreach (var cell in row.Cells)
             {
-                switch (cell.TypeValue())
+                if (cell.GetType() == typeof(Cell))
                 {
-                    case Cell.ReturnValue.INT:
-                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                        Console.Write(((Cell)cell).GetValue());
-                        break;
-                    case Cell.ReturnValue.STRING:
-                        Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                        Console.Write(((EmptyCell)cell).GetValue());
-                        break;
+                    Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
+                    Console.Write(((Cell)cell).GetValue());
+                }
+                else if (cell.GetType() == typeof(EmptyCell))
+                {
+                    Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
+                    Console.Write(((EmptyCell)cell).GetValue());
                 }
                 counterX += 6;
+                
             }
         }
 

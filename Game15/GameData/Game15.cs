@@ -34,32 +34,38 @@ namespace Game15.GameData
             {
                 Console.WriteLine(
                     "Меню:\n1) Начать новую игру \n2) Продолжить ранее сохраненную игру \n3) Выйти из игры");
-                i = Convert.ToInt32(Console.ReadLine());
-                switch (i)
+                if (Int32.TryParse(Console.ReadLine(), out i))
                 {
-                    case 1:
-                        Dimension = consoleInput.GetDimension();
-                        list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
-                        break;
-                    case 2:
-                        if (File.Exists("Game15.txt"))
-                        {
-                            Dimension = consoleInput.GetFileDimension();
-                            consoleInput.GetFileList(list);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Сохраненной игры нет, начните новую!");
-                            Console.ReadLine();
-                            i = 0;
-                        }
-                        break;
-                    case 3:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Ошибка! Выберите правильный пункт!");
-                        break;
+                    switch (i)
+                    {
+                        case 1:
+                            Dimension = consoleInput.GetDimension();
+                            list = Enumerable.Range(0, Dimension * Dimension).ToList().Shuffle();
+                            break;
+                        case 2:
+                            if (File.Exists("Game15.txt"))
+                            {
+                                Dimension = consoleInput.GetFileDimension();
+                                consoleInput.GetFileList(list);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Сохраненной игры нет, начните новую!");
+                                Console.ReadLine();
+                                i = 0;
+                            }
+                            break;
+                        case 3:
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            Console.WriteLine("Ошибка! Выберите правильный пункт!");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка! Повторите ввод!");
                 }
                 Console.Clear();
             } while (i != 1 && i !=2);

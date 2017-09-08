@@ -48,6 +48,7 @@
     <Compile Include="GameData\ConsoleOutput.cs" />
     <Compile Include="GameData\CustomExtensions.cs" />
     <Compile Include="GameData\CustomPoint.cs" />
+    <Compile Include="GameData\CustomType.cs" />
     <Compile Include="GameData\CustomValue.cs" />
     <Compile Include="GameData\EmptyCell.cs" />
     <Compile Include="GameData\FileInput.cs" />
