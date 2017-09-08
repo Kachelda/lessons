@@ -21,9 +21,16 @@ namespace Game15.GameData
 
                     foreach (Row row in board.Rows)
                     {
-                        foreach (Cell cell in row.Cells)
+                        foreach (ICell cell in row.Cells)
                         {
-                            sw.Write(cell.GetValue() + " ");
+                            if (cell.Data == String.Empty)
+                            {
+                                sw.Write("0" + " ");
+                            }
+                            else
+                            {
+                                sw.Write(cell.Data + " ");
+                            }
                         }
                     }
                     sw.WriteLine();
@@ -36,18 +43,18 @@ namespace Game15.GameData
                         string g2 = "  ";
                         string g3 = "   |";
 
-                        foreach (Cell cell in row.Cells)
+                        foreach (var cell in row.Cells)
                         {
-                            switch (cell.TypeValue())
+                            if (cell.GetType() == typeof(Cell))
                             {
-                                case Cell.ReturnValue.INT:
-                                    g1 = g1 + g2 + cell.GetValue() + g3.Substring(cell.GetValue().ToString().Length);
-                                    break;
-                                case Cell.ReturnValue.STRING:
-                                    g1 = g1 + g2 + ((EmptyCell)cell).GetValue() + g3;
-                                    break;
+                                g1 = g1 + g2 + ((Cell)cell).Data + g3.Substring(((Cell)cell).Data.ToString().Length);
+                            }
+                            else if (cell.GetType() == typeof(EmptyCell))
+                            {
+                                g1 = g1 + g2 + ((EmptyCell)cell).Data.ToString() + g3;
                             }
                         }
+
                         sw.WriteLine(g1);
                         sw.WriteLine(GetEmptyLine(board.Dimension));
                     }

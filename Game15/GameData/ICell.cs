@@ -10,10 +10,8 @@ namespace Game15.GameData
 {
     interface ICell
     {
+        string Data { get; set; }
+
         CustomPoint CurrentPosition { get; set; }
-
-        bool IsInPlace();
-
-        Cell.ReturnValue TypeValue();
     }
 }

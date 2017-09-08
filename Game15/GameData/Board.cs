@@ -31,12 +31,12 @@ namespace Game15.GameData
                 int y = row.Cells.Count;
                 if (item == emptyCellIndex)
                 {
-                    EmptyCell = new EmptyCell(new CustomValue(string.Empty), new CustomPoint(x, y), Dimension);
+                    EmptyCell = new EmptyCell(String.Empty, new CustomPoint(x, y), Dimension);
                     row.Cells.Add(EmptyCell);
                 }
                 else
                 {
-                    row.Cells.Add(new Cell(new CustomValue(item), new CustomPoint(x, y), Dimension));
+                    row.Cells.Add(new Cell(item.ToString(), new CustomPoint(x, y), Dimension));
                 }
                 if (row.Cells.Count == Dimension)
                 {
@@ -48,11 +48,16 @@ namespace Game15.GameData
 
         public void CheckWordBoard()
         {
+            int counter = 1;
             foreach (var row in Rows)
             {
                 foreach (var cell in row.Cells)
                 {
-                    if (!cell.IsInPlace())
+                    if (Convert.ToInt32(cell.Data) == counter || cell.Data == String.Empty)
+                    {
+                        counter++;
+                    }
+                    else
                     {
                         return;
                     }

@@ -7,24 +7,19 @@ using System.Threading.Tasks;
 
 namespace Game15.GameData
 {
-    class EmptyCell: Cell, ICell
+    class EmptyCell: ICell
     {
-        public EmptyCell(CustomValue value, CustomPoint currentPosition, int dimension)
-            : base(value, currentPosition, dimension) { }
-        
-        public string GetValue()
-        {
-            return Data.GetDataStr();
-        }
+        public int Dimension { get; set; }
 
-        public override ReturnValue TypeValue()
-        {
-            return ReturnValue.STRING;
-        }
+        public string Data { get; set; }
 
-        public override CustomPoint FinalPosition()
+        public CustomPoint CurrentPosition { get; set; }
+
+        public EmptyCell(string value, CustomPoint currentPosition, int dimension)
         {
-            return new CustomPoint(Dimension - 1, Dimension - 1);
+            Data = value;
+            CurrentPosition = currentPosition;
+            Dimension = dimension;
         }
     }
 }
