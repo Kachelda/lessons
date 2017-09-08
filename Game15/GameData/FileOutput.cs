@@ -23,7 +23,7 @@ namespace Game15.GameData
                     {
                         foreach (ICell cell in row.Cells)
                         {
-                            if (cell.Data == String.Empty)
+                            if (cell.Data == 0)
                             {
                                 sw.Write("0" + " ");
                             }
@@ -45,13 +45,13 @@ namespace Game15.GameData
 
                         foreach (var cell in row.Cells)
                         {
-                            if (cell.GetType() == typeof(Cell))
+                            if (cell.IsEmpty == false)
                             {
-                                g1 = g1 + g2 + ((Cell)cell).Data + g3.Substring(((Cell)cell).Data.ToString().Length);
+                                g1 = g1 + g2 + cell + g3.Substring(cell.ToString().Length);
                             }
-                            else if (cell.GetType() == typeof(EmptyCell))
+                            else
                             {
-                                g1 = g1 + g2 + ((EmptyCell)cell).Data.ToString() + g3;
+                                g1 = g1 + g2 + cell + g3;
                             }
                         }
 

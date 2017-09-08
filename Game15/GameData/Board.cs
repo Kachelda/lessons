@@ -13,7 +13,7 @@ namespace Game15.GameData
 
         public int Dimension { get; set; }
 
-        public EmptyCell EmptyCell { get; set; }
+        public Cell EmptyCell { get; set; }
 
         public Board(int dimension)
         {
@@ -31,12 +31,13 @@ namespace Game15.GameData
                 int y = row.Cells.Count;
                 if (item == emptyCellIndex)
                 {
-                    EmptyCell = new EmptyCell(String.Empty, new CustomPoint(x, y), Dimension);
+                    EmptyCell = new Cell(emptyCellIndex, new CustomPoint(x, y));
+                    EmptyCell.IsEmpty = true;
                     row.Cells.Add(EmptyCell);
                 }
                 else
                 {
-                    row.Cells.Add(new Cell(item.ToString(), new CustomPoint(x, y), Dimension));
+                    row.Cells.Add(new Cell(item, new CustomPoint(x, y)));
                 }
                 if (row.Cells.Count == Dimension)
                 {
@@ -53,7 +54,7 @@ namespace Game15.GameData
             {
                 foreach (var cell in row.Cells)
                 {
-                    if (Convert.ToInt32(cell.Data) == counter || cell.Data == String.Empty)
+                    if (Convert.ToInt32(cell.Data) == counter || cell.Data == 0)
                     {
                         counter++;
                     }

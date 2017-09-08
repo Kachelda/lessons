@@ -10,17 +10,31 @@ namespace Game15.GameData
 {
     class Cell: ICell
     {
-        public int Dimension { get; set; }
+        public bool IsEmpty { get; set; }
 
-        public string Data { get; set; }
+        public int Data { get; set; }
 
         public CustomPoint CurrentPosition { get; set; }
 
-        public Cell(string value, CustomPoint currentPosition, int dimension)
+        public Cell(int value, CustomPoint currentPosition)
         {
             Data = value;
             CurrentPosition = currentPosition;
-            Dimension = dimension;
         }
+
+        public override string ToString()
+        {
+            if (IsEmpty)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return Data.ToString();
+            }
+   
+        }
+
+        
     }
 }

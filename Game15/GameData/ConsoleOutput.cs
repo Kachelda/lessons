@@ -51,18 +51,11 @@ namespace Game15.GameData
             int counterX = 0;
             foreach (var cell in row.Cells)
             {
-                if (cell.GetType() == typeof(Cell))
-                {
-                    Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                    Console.Write(((Cell)cell).Data);
-                }
-                else if (cell.GetType() == typeof(EmptyCell))
-                {
-                    Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
-                    Console.Write(((EmptyCell)cell).Data);
-                }
-                counterX += 6;
+                Console.SetCursorPosition(X + 3 + counterX, Y + 2 + counterY);
+                Console.Write(cell);
                 
+                counterX += 6;
+
             }
         }
 

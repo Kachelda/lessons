@@ -10,7 +10,9 @@ namespace Game15.GameData
 {
     interface ICell
     {
-        string Data { get; set; }
+        bool IsEmpty { get; set; }
+
+        int Data { get; set; }
 
         CustomPoint CurrentPosition { get; set; }
     }
